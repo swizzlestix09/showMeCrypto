@@ -1,6 +1,6 @@
 import CryptoItem  from "./CryptoItem";
 
-
+//might need to add proptype to this..
 const CryptoMenu = () => {
   return (
     <div className="CryptoMenu">

@@ -1,27 +1,47 @@
-import React from 'react';
+import * as React from 'react';
 import CryptoMenu from './Menu/CryptoMenu';
 import axios from 'axios';
 import './App.css';
 const getCryptoURL = 'https://api.exchange.coinbase.com/currencies';
 
-const App = () => {
-  const [currencies, getCurrencies] = React.useState(null);
+type Token = {
+  id: string,
+  name: string,
+  symbol: string
+};
+
+const App: React.FC = ( ) => {
+  const [currencies, getCurrencies] = React.useState<any[] | null>(null);
 
   React.useEffect(() => {
     axios.get(getCryptoURL)
       .then(res => {
-        console.log(res);
+        //map thru res.data to get pertanent information
+        //setstate of currencies
+        const cryptoList = res.data.map((token: any) => {
+          let eachToken: Token = {
+            id: token.id,
+            name: token.name,
+            symbol: token.details.symbol
+          }
+          return eachToken;
+        });
+        return cryptoList;
+      })
+      .then(cryptoList => {
+        getCurrencies(cryptoList);
       })
       .catch(err => {
         console.error(err);
       })
   }, []);
 
-  return (
-    <div className="App">
-      <CryptoMenu />
-    </div>
-  );
+  return !currencies ? null :
+    (
+      <div className="App">
+        <CryptoMenu currencies={currencies} />
+      </div>
+    );
 }
 
 export default App;
