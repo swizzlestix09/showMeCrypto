@@ -1,14 +1,18 @@
 import React from 'react';
+import CryptoMenu from './Menu/CryptoMenu';
+import axios from 'axios';
 import './App.css';
 
 const App = () => {
+  const [currencies, getCurrencies] = React.useState();
+
+  React.useEffect( ()=> {
+
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
+     <CryptoMenu />
     </div>
   );
 }
