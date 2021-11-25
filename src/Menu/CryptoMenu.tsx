@@ -1,4 +1,4 @@
-import CryptoItem  from "./CryptoItem";
+import CryptoItem from "./CryptoItem";
 
 //might need to add proptype to this..
 export interface Props {
@@ -6,11 +6,18 @@ export interface Props {
 };
 
 const CryptoMenu = (props: Props) => {
-  console.log('props?', props)
+  let currencies = props.currencies;
+
   return (
     <div className="CryptoMenu">
-      <p>ohmergosh, CryptoMenu is live</p>
-      <CryptoItem />
+      <h3>CryptoCurrencies</h3>
+      {currencies.map(token => {
+        return (
+          <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} />
+        )
+      })
+
+      };
     </div>
   )
 };

@@ -10,14 +10,12 @@ type Token = {
   symbol: string
 };
 
-const App: React.FC = ( ) => {
+const App: React.FC = () => {
   const [currencies, getCurrencies] = React.useState<any[] | null>(null);
 
   React.useEffect(() => {
     axios.get(getCryptoURL)
       .then(res => {
-        //map thru res.data to get pertanent information
-        //setstate of currencies
         const cryptoList = res.data.map((token: any) => {
           let eachToken: Token = {
             id: token.id,
