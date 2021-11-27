@@ -9,16 +9,17 @@ const CryptoMenu = (props: Props) => {
   let currencies = props.currencies;
 
   return (
-    <div className="CryptoMenu">
+    <>
       <h3>CryptoCurrencies</h3>
+      <ul>
       {currencies.map(token => {
         return (
           <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} />
         )
       })
-
-      };
-    </div>
+      }
+      </ul>
+    </>
   )
 };
 

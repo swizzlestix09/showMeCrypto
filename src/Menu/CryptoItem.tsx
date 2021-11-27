@@ -7,13 +7,13 @@ export interface Props {
 };
 
 const CryptoItem= (props: Props) => (
-  <div>
-    <p>
+  <>
+    <li className="eachCryptoc">
       <abbr>{props.tokenId} </abbr>
       <strong> {props.tokenName} </strong>
       {props.tokenSym === null ? '' : props.tokenSym}
-    </p>
-  </div>
+    </li>
+  </>
 );
 
 export default CryptoItem;
