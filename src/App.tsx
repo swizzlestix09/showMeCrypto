@@ -17,7 +17,9 @@ const App: React.FC = () => {
   const [eachCurrency, getCurrencyInfo] = React.useState<string | null>(null);
 
   function clickCurrency(currencyId: any) {
-    getCurrencyInfo(currencyId.target.children[0].innerHTML);
+
+    let ticker = currencyId.textContent.split(' ')[0];
+    getCurrencyInfo(ticker);
   };
 
   React.useEffect(() => {

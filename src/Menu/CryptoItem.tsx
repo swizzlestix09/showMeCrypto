@@ -12,7 +12,7 @@ const CryptoItem = (props: Props) => {
 
   return (
     <>
-      <li className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e)}>
+      <li className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
         <strong>{props.tokenId} </strong>
         {props.tokenName}
         {props.tokenSym === null ? '' : props.tokenSym}
