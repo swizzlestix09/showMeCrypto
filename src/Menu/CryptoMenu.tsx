@@ -2,20 +2,21 @@ import CryptoItem from "./CryptoItem";
 
 //might need to add proptype to this..
 export interface Props {
-  currencies: any[]
+  currencies: any[],
+  clickCurrency: any
 };
 
 const CryptoMenu = (props: Props) => {
   let currencies = props.currencies;
-
+  console.log(props)
   return (
     <>
       <h3>CryptoCurrencies</h3>
       <ul>
       {currencies.map(token => {
         return (
-          <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} />
-        )
+          <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} clickCurrency={props.clickCurrency}/>
+        );
       })
       }
       </ul>

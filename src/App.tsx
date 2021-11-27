@@ -1,7 +1,9 @@
 import * as React from 'react';
 import CryptoMenu from './Menu/CryptoMenu';
+import CryptoInfo from './CryptoDetails/CryptoInfo';
 import axios from 'axios';
 import './App.css';
+import CryptoItem from './Menu/CryptoItem';
 const getCryptoURL = 'https://api.exchange.coinbase.com/currencies';
 
 type Token = {
@@ -12,6 +14,11 @@ type Token = {
 
 const App: React.FC = () => {
   const [currencies, getCurrencies] = React.useState<any[] | null>(null);
+  const [eachCurrency, getCurrencyInfo] = React.useState<string | null>(null);
+
+  function clickCurrency(currencyId: any) {
+    getCurrencyInfo(currencyId.target.children[0].innerHTML);
+  };
 
   React.useEffect(() => {
     axios.get(getCryptoURL)
@@ -37,7 +44,8 @@ const App: React.FC = () => {
   return !currencies ? null :
     (
       <div className="App">
-        <CryptoMenu currencies={currencies} />
+        <CryptoMenu currencies={currencies} clickCurrency={clickCurrency}/>
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency}/>
       </div>
     );
 }
