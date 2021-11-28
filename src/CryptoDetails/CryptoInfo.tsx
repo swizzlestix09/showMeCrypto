@@ -1,5 +1,5 @@
-import axios from 'axios';
 import * as React from 'react';
+const axios = require('axios').default;
 
 
 export interface Props {
@@ -9,7 +9,8 @@ export interface Props {
 type Config = {
   method: any,
   url: string,
-  data: any
+  body: any,
+  headers?: any
 };
 
 const CryptoInfo = (props: Props) => {
@@ -17,26 +18,25 @@ const CryptoInfo = (props: Props) => {
 
   React.useEffect(() => {
     let ticker = props.eachCurrency;
-    let config:Config = {
-      method: 'POST',
-      url: 'http://localhost:3000/getTickerData',
-      data: {
-        ticker
-      }
-    }
+    console.log(ticker)
+    let config: Config = {
+      method: 'get',
+      url: '/getTickerData',
+      body: ticker,
+      headers: { 'Content-Type': 'application/json' }
+    };
 
-    axios( config )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch(err => console.error(err))
+    axios(config)
+      .then((res:any) => { if (res.status === 200) { console.log(res) } })
+      .catch( (err:any) => { if (err.request) { console.log(err.request) } if (err.response) { console.log(err.response) } });
+
   });
 
   console.log('in crypto info ', props)
   //send ticker to coinbase + usd for now
   //render information retrieved from source
 
-  return(
+  return (
     <div>help.</div>
   )
 };

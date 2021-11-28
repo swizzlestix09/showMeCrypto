@@ -1,14 +1,16 @@
 import express from 'express';
+import cors from'cors';
 
 const path = require('path');
 const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'build')));
 const port = process.env.PORT || 3000;
 
-app.post('/getTickerData', (req, res)=>{
+app.use(express.urlencoded());
+app.use(express.json());
+app.use(cors());
+//app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/getTickerData', (req:any, res:any)=>{
   console.log('help..', req)
 });
 
