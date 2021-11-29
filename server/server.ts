@@ -1,16 +1,18 @@
 import express from 'express';
+import cors from 'cors';
 
-const path = require('path');
 const app = express();
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'build')));
+const port = 3002;
 
-const port = process.env.PORT || 5000;
+app.get('/', (req, res) => {
+  res.send('hullo there')
+})
 
-
-app.listen(()=> {
+app.listen(port, ()=> {
   console.dir(`We are listening on port: ${port}`);
 })
