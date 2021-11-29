@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "ts-node-dev src/server/server.ts",
+    "dev": "npx ts-node-dev --respawn --transpile-only src/server/server.ts",
     "build": "react-scripts build",
     "test": "nodemon --watch ./server/server.ts",
     "eject": "react-scripts eject"
@@ -41,7 +41,6 @@
       "not dead",
       "not op_mini all"
     ],
-    "proxy": "http://localhost:3001/",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

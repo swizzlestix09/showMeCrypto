@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "sourceMap": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -21,9 +21,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*"
-, "server"  ]
+    "src/**/*",
+    "server"
+  ]
 }

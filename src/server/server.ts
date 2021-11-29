@@ -1,5 +1,8 @@
-import express from "express";
-import cors from "cors";
+// const express = 'express';
+// const cors = 'cors'
+
+import express from 'express';
+import cors from 'cors'
 //import path from 'path';
 
 const app = express();
