@@ -8,7 +8,7 @@ export interface Props {
 
 const CryptoMenu = (props: Props) => {
   let currencies = props.currencies;
-  console.log(props)
+
   return (
     <>
       <h3>CryptoCurrencies</h3>

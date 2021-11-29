@@ -9,7 +9,6 @@ export interface Props {
 };
 
 const CryptoItem = (props: Props) => {
-
   return (
     <>
       <li className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
