@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    //module always has to be commonjs
     "module": "commonjs",
     "sourceMap": true,
     "esModuleInterop": true,

@@ -18,14 +18,25 @@ export interface Props {
 const CryptoInfo = (props: Props) => {
   console.log('props recieved ', props.eachCurrency)
   let ticker = props.eachCurrency;
-  const [tickerInfo, setTickerInfo] = React.useState< string | {}>({});
+  const [tickerInfo, setTickerInfo] = React.useState<string | {}>({});
 
   React.useEffect(() => {
     console.log('wetdg ', ticker)
-    if(ticker) {
-      axios('http://localhost:3002/getTickerData', { params: { ticker }})
-        .then((res:any) => { if (res.status === 200) { console.log(res) } })
-        .catch( (err:any) => { if (err.request) { console.log(err.request) } if (err.response) { console.log(err.response) } });
+    if (ticker) {
+      axios('http://localhost:3002/getTickerData', { params: { ticker } })
+        .then((res: any) => {
+          if (res.status === 200) {
+            console.log(res)
+          }
+        })
+        .catch((err: any) => {
+          if (err.request) {
+            console.log(err.request)
+          }
+          if (err.response) {
+            console.log(err.response)
+          }
+        });
     }
 
   }, [ticker]);
