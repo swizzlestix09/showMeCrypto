@@ -9,7 +9,8 @@ app.use(express.urlencoded({ extended: false }));
 
 const port = 3002;
 
-app.get('/', (req, res) => {
+app.get('/getTickerData', (req, res) => {
+  console.log(req.query.ticker)
   res.send('hullo there')
 })
 
