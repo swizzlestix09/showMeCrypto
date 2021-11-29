@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+const apiHelpers = require('./helpers/apiCalls');
 
 const app = express();
 
@@ -10,7 +11,14 @@ app.use(express.urlencoded({ extended: false }));
 const port = 3002;
 
 app.get('/getTickerData', (req, res) => {
-  console.log(req.query.ticker)
+  apiHelpers.getTickerInfo(req.query.ticker)
+  .then((data: any) => {
+    console.log('in server ', data)
+  })
+  .catch((err: any) => {
+    console.log(err)
+    res.send(err)
+  })
   res.send('hullo there')
 })
 
