@@ -12,14 +12,13 @@ const port = 3002;
 
 app.get('/getTickerData', (req, res) => {
   apiHelpers.getTickerInfo(req.query.ticker)
-  .then((data: any) => {
-    console.log('in server ', data)
+  .then((data: {}) => {
+    res.status(200).json(data)
   })
   .catch((err: any) => {
     console.log(err)
-    res.send(err)
+    res.status(401).send(err)
   })
-  res.send('hullo there')
 })
 
 app.listen(port, ()=> {

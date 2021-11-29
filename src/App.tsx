@@ -3,7 +3,6 @@ import CryptoMenu from './Menu/CryptoMenu';
 import CryptoInfo from './CryptoDetails/CryptoInfo';
 import axios from 'axios';
 import './App.css';
-import CryptoItem from './Menu/CryptoItem';
 const getCryptoURL = 'https://api.exchange.coinbase.com/currencies';
 
 type Token = {

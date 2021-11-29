@@ -1,33 +1,35 @@
 import * as React from 'react';
+import CryptoDetails from './CryptoDetails';
 const axios = require('axios').default;
-
 
 export interface Props {
   eachCurrency: string | null;
 };
 
-// type Config = {
-//   method: any,
-//   url: string,
-//   param: any,
-//   headers?: any,
-//   mode?: any
-// };
-
+type Ticker= {
+  open: string | null,
+  high: string | null,
+  low: string | null,
+  volume: string | null,
+  last: string | null
+};
 
 const CryptoInfo = (props: Props) => {
-  console.log('props recieved ', props.eachCurrency)
+  //console.log('props recieved ', props.eachCurrency)
   let ticker = props.eachCurrency;
-  const [tickerInfo, setTickerInfo] = React.useState<string | {}>({});
+  const [tickerInfo, setTickerInfo] = React.useState<Ticker>({} as Ticker);
 
   React.useEffect(() => {
-    console.log('wetdg ', ticker)
     if (ticker) {
       axios('http://localhost:3002/getTickerData', { params: { ticker } })
         .then((res: any) => {
           if (res.status === 200) {
-            console.log(res)
+            console.log('in axios get', res)
+            setTickerInfo(res.data)
           }
+        })
+        .then(() => {
+          //handle info to render
         })
         .catch((err: any) => {
           if (err.request) {
@@ -43,9 +45,15 @@ const CryptoInfo = (props: Props) => {
 
   //send ticker to coinbase + usd for now
   //render information retrieved from source
+  //dont forget edge case - non crypto currencies
+
+
+
 
   return (
-    <div>help.</div>
+    <div>
+      <CryptoDetails tickerInfo={tickerInfo} />
+    </div>
   )
 };
 
