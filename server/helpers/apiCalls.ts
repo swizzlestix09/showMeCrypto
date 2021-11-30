@@ -16,7 +16,6 @@ const getTickerInfo = (ticker: string) => {
   .catch(function (error: any) {
     console.log(error);
   });
-
 };
 
 module.exports.getTickerInfo = getTickerInfo;

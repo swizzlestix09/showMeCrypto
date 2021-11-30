@@ -1,5 +1,6 @@
-import * as React from 'react';
-
+import Paper from '@mui/material/Paper';
+import CardContent from '@mui/material/CardContent';
+import CryptoChart from './CryptoChart';
 export interface Props {
   tickerInfo: {
     open: string | null,
@@ -9,18 +10,21 @@ export interface Props {
   }
 };
 
-const CryptoDetails = (props: Props) =>{
+const CryptoDetails = (props: Props) => {
   console.log('in details... ', props.tickerInfo)
-  return(
-    <div>
-      <ul>
-        <li>Open: {props.tickerInfo.open}</li>
-        <li>High: {props.tickerInfo.high}</li>
-        <li>Low: {props.tickerInfo.low}</li>
-        <li>Volume: {props.tickerInfo.volume}</li>
-        <li>Market Cap:</li>
-        <li>Change %: </li>
-      </ul>
+  return (
+    <div className="cryptoDetails">
+      <CryptoChart />
+      <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >
+        <CardContent>
+            <p>Open: {props.tickerInfo.open}</p>
+            <p>High: {props.tickerInfo.high}</p>
+            <p>Low: {props.tickerInfo.low}</p>
+            <p>Volume: {props.tickerInfo.volume}</p>
+            <p>Market Cap:</p>
+            <p>Change %: </p>
+        </CardContent>
+      </Paper>
     </div>
   )
 };
