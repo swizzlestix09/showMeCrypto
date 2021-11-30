@@ -21,8 +21,10 @@ const App: React.FC = () => {
   };
 
   React.useEffect(() => {
+
     axios.get(getCryptoURL)
       .then(res => {
+        res.data = res.data.sort();
         const cryptoList = res.data.map((token: any) => {
           let eachToken: Token = {
             id: token.id,
@@ -39,6 +41,7 @@ const App: React.FC = () => {
       .catch(err => {
         console.error(err);
       })
+
   }, []);
 
   return !currencies ? null :

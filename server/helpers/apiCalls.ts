@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+
+
 const getTickerInfo = (ticker: string) => {
   var config = {
     method: 'get',
