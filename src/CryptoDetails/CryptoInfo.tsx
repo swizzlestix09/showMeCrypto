@@ -15,13 +15,14 @@ type Ticker= {
 };
 
 const CryptoInfo = (props: Props) => {
+  let ticker: any = props.eachCurrency;
+  if (ticker === null) {
+    ticker = ['BTC-USD'];
+  }
 
-  let ticker = props.eachCurrency;
-  console.log('AJFKEAFKAGD ', props.eachCurrency);
   const [tickerInfo, setTickerInfo] = React.useState<Ticker>({} as Ticker);
 
   React.useEffect(() => {
-    if (ticker) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       ticker = ticker[0];
       axios('http://localhost:3002/getTickerData', { params: { ticker } })
@@ -42,19 +43,14 @@ const CryptoInfo = (props: Props) => {
             console.log(err.response)
           }
         });
-    }
+
 
   }, [ticker]);
-
-  //send ticker to coinbase + usd for now
-  //render information retrieved from source
-  //dont forget edge case - non crypto currencies
-
-
 
 
   return (
     <div>
+      <h1>{ticker}</h1>
       <CryptoDetails tickerInfo={tickerInfo} />
     </div>
   )

@@ -5,11 +5,6 @@ import axios from 'axios';
 import './App.css';
 const getCryptoURL = 'https://api.exchange.coinbase.com';
 
-type Token = {
-  id: string,
-  name: string,
-  symbol: string
-};
 
 const App: React.FC = () => {
   const ws = React.useRef<any | null>(null);
@@ -27,12 +22,11 @@ const App: React.FC = () => {
     ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
     const apiCallForCurrencies = async() => {
-      let cryptoInfo: [] = [];
       let usCurrencies: [] = [];
-      await axios.get(getCryptoURL + '/products')
-        .then(res => cryptoInfo = res.data)
-        .then(cryptoInfo => {
 
+      await axios.get(getCryptoURL + '/products')
+        .then(res => res.data)
+        .then(cryptoInfo => {
           usCurrencies = cryptoInfo.filter((curr: any) => {
             if (curr.quote_currency === 'USD') {
               return curr;
@@ -61,7 +55,6 @@ const App: React.FC = () => {
 
   }, []);
 
-  console.log('before return ', currencies)
   return !currencies ? null :
     (
       <div className="App">

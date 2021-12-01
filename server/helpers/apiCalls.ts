@@ -5,7 +5,7 @@ const axios = require("axios");
 const getTickerInfo = (ticker: string) => {
   var config = {
     method: 'get',
-    url: `https://api.exchange.coinbase.com/products/${ticker}-usd/stats`,
+    url: `https://api.exchange.coinbase.com/products/${ticker}/stats`,
     headers: { }
   };
 
