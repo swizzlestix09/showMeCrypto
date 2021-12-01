@@ -3,8 +3,7 @@ import CryptoDetails from './CryptoDetails';
 const axios = require('axios').default;
 
 export interface Props {
-  eachCurrency: string | null,
-  coinName: string | null
+  eachCurrency: string | null
 };
 
 type Ticker= {
@@ -18,8 +17,7 @@ type Ticker= {
 const CryptoInfo = (props: Props) => {
 
   let ticker = props.eachCurrency;
-  let coinName = ticker !== null ?  ticker[1] : '';
-
+  console.log('AJFKEAFKAGD ', props.eachCurrency);
   const [tickerInfo, setTickerInfo] = React.useState<Ticker>({} as Ticker);
 
   React.useEffect(() => {
