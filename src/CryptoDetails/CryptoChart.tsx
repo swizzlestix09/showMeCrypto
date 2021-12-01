@@ -22,10 +22,16 @@ const CryptoChart = () => {
       57618.347730756235
     ]
   ]
+
+  let dateData: any[] = dummydata.map( (arr: any) => {
+    let actualDate = arr[0] = new Date(arr[0]);
+    return [actualDate, arr[1]]
+  })
+  console.log('datedata', dateData)
   return (
     <div>
       <Paper>
-        <Chart data={dummydata}>
+        <Chart data={dateData}>
           <ArgumentAxis />
           <ValueAxis />
           <LineSeries valueField="1" argumentField="0" />

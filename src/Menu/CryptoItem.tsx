@@ -11,8 +11,8 @@ const CryptoItem = (props: Props) => {
     <>
       <MenuItem>
         <li className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
-          <strong>{props.tokenId} </strong>
-          {props.tokenName + ' '}
+          {`${props.tokenId} `}
+          {`${props.tokenName} `}
           {props.tokenSym === null ? '' : props.tokenSym}
         </li>
       </MenuItem>

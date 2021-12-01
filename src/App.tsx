@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [eachCurrency, getCurrencyInfo] = React.useState<string | null>(null);
 
   function clickCurrency(currencyId: any) {
-    let ticker = currencyId.textContent.split(' ')[0];
+    let ticker = currencyId.textContent.split(' ');
     getCurrencyInfo(ticker);
   };
 
@@ -48,7 +48,7 @@ const App: React.FC = () => {
     (
       <div className="App">
         <CryptoMenu currencies={currencies} clickCurrency={clickCurrency}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency}/>
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} coinName={''} />
       </div>
     );
 }

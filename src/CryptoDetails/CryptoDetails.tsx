@@ -10,6 +10,7 @@ export interface Props {
   }
 };
 
+
 const CryptoDetails = (props: Props) => {
   console.log('in details... ', props.tickerInfo)
   return (

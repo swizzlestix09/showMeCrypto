@@ -3,7 +3,8 @@ import CryptoDetails from './CryptoDetails';
 const axios = require('axios').default;
 
 export interface Props {
-  eachCurrency: string | null;
+  eachCurrency: string | null,
+  coinName: string | null
 };
 
 type Ticker= {
@@ -15,12 +16,16 @@ type Ticker= {
 };
 
 const CryptoInfo = (props: Props) => {
-  //console.log('props recieved ', props.eachCurrency)
+
   let ticker = props.eachCurrency;
+  let coinName = ticker !== null ?  ticker[1] : '';
+
   const [tickerInfo, setTickerInfo] = React.useState<Ticker>({} as Ticker);
 
   React.useEffect(() => {
     if (ticker) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      ticker = ticker[0];
       axios('http://localhost:3002/getTickerData', { params: { ticker } })
         .then((res: any) => {
           if (res.status === 200) {
