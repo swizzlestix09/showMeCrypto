@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import CryptoMenu from './Menu/CryptoMenu';
 import CryptoInfo from './CryptoDetails/CryptoInfo';
 import axios from 'axios';
@@ -7,17 +7,17 @@ const getCryptoURL = 'https://api.exchange.coinbase.com';
 
 
 const App: React.FC = () => {
-  const ws = React.useRef<any | null>(null);
-  const firstRender = React.useRef<boolean>(false);
-  const [currencies, setCurrencies] = React.useState<any[] >([]);
-  const [eachCurrency, getCurrencyInfo] = React.useState<string | null>(null);
+  const ws = useRef<any | null>(null);
+  const firstRender = useRef<boolean>(false);
+  const [currencies, setCurrencies] = useState<any[] >([]);
+  const [eachCurrency, getCurrencyInfo] = useState<string | null>(null);
 
   function clickCurrency(currencyId: any) {
     let ticker = currencyId.textContent.split(' ');
     getCurrencyInfo(ticker);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
 
     ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
@@ -59,7 +59,7 @@ const App: React.FC = () => {
     (
       <div className="App">
         <CryptoMenu currencies={currencies} clickCurrency={clickCurrency}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} />
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} ws={ws} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
       </div>
     );
 }

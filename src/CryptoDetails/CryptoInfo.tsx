@@ -1,9 +1,13 @@
 import * as React from 'react';
 import CryptoDetails from './CryptoDetails';
+import CryptoChart from './CryptoChart';
 const axios = require('axios').default;
 
 export interface Props {
-  eachCurrency: string | null
+  eachCurrency: string | null;
+  ws: any;
+  getCryptoURL: string;
+  firstRender: {}
 };
 
 type Ticker= {
@@ -29,11 +33,8 @@ const CryptoInfo = (props: Props) => {
         .then((res: any) => {
           if (res.status === 200) {
             console.log('in axios get', res)
-            setTickerInfo(res.data)
+            return setTickerInfo(res.data)
           }
-        })
-        .then(() => {
-          //handle info to render
         })
         .catch((err: any) => {
           if (err.request) {
@@ -42,15 +43,16 @@ const CryptoInfo = (props: Props) => {
           if (err.response) {
             console.log(err.response)
           }
-        });
+        }, []);
 
 
   }, [ticker]);
 
-
+  console.log('confused ',props.ws.current)
   return (
     <div>
       <h1>{ticker}</h1>
+      <CryptoChart eachCurrency={props.eachCurrency} ws={props.ws} getCryptoURL={props.getCryptoURL} firstRender={props.firstRender}/>
       <CryptoDetails tickerInfo={tickerInfo} />
     </div>
   )

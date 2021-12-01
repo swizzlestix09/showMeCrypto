@@ -10,9 +10,9 @@ const CryptoItem = (props: Props) => {
   return (
     <>
       <MenuItem>
-        <li className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
+        <button className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
           {`${props.tokenId} `}
-        </li>
+        </button>
       </MenuItem>
     </>
   );

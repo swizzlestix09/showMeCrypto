@@ -1,6 +1,6 @@
 import Paper from '@mui/material/Paper';
 import CardContent from '@mui/material/CardContent';
-import CryptoChart from './CryptoChart';
+
 export interface Props {
   tickerInfo: {
     open: string | null,
@@ -15,7 +15,6 @@ const CryptoDetails = (props: Props) => {
   console.log('in details... ', props.tickerInfo)
   return (
     <div className="cryptoDetails">
-      <CryptoChart />
       <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >
         <CardContent>
             <p>Open: {props.tickerInfo.open}</p>
