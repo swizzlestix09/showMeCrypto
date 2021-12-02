@@ -8,88 +8,79 @@ export interface Props {
   firstRender: {}
 };
 
-type Ticker= {
-  open: string | null,
-  high: string | null,
-  low: string | null,
-  volume: string | null,
-  last: string | null
+type Ticker = {
+  token: string | null,
+  price: string | null,
+  open_24h: string | null,
+  volume_24h: string | null,
+  low_24h: string | null,
+  volume_30d: string | null
 };
+
 
 type Wsmsg = {
   type: string;
-  product_ids: (string | null)[];
+  product_ids: any;
   channels: any[]
 }
 
 const CryptoInfo = (props: Props) => {
   const ws = useRef<any | null>(null);
-  const [currentPrice, setCurrentPrice] = useState<string>("0.00");
-  let ticker: any = props.eachCurrency;
-  if (ticker === null) {
-    ticker = ['BTC-USD'];
-  }
-
+  const currentCrypto = useRef< any | null>(null);
   const [tickerInfo, setTickerInfo] = useState<Ticker>({} as Ticker);
 
-  // useEffect(() => {
-  //     // eslint-disable-next-line react-hooks/exhaustive-deps
-  //     ticker = ticker[0];
-  //     axios('http://localhost:3002/getTickerData', { params: { ticker } })
-  //       .then((res: any) => {
-  //         if (res.status === 200) {
-  //           console.log('in axios get', res)
-  //           return setTickerInfo(res.data)
-  //         }
-  //       })
-  //       .catch((err: any) => {
-  //         if (err.request) {
-  //           console.log(err.request)
-  //         }
-  //         if (err.response) {
-  //           console.log(err.response)
-  //         }
-  //       }, []);
-
-
-  // }, [ticker]);
-
   useEffect( ()=>{
-
     if (!props.firstRender) {
       return;
     }
-
     ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
     if (props.eachCurrency !== null) {
-      let currentCrypto: string = props.eachCurrency[0]
+      console.log('TESTERRRRRRRR curCryp', currentCrypto.current, 'EachCur', props.eachCurrency[0])
+      currentCrypto.current = props.eachCurrency[0];
+      if (currentCrypto.current !== props.eachCurrency[0] ) {
+        //unsubscribe from currentcrypto
+        //set current to props.eachCurrency
+      }
 
-      console.log('hmmmm ', currentCrypto)
+
       ws.current.onopen = ()=> {
         const msg: Wsmsg = {
           type: "subscribe",
-          product_ids: [currentCrypto],
+          product_ids: [ currentCrypto.current ],
           channels: ["ticker"]
         };
 
-        console.log('worked?')
         const msgJson: string = JSON.stringify(msg);
-        console.log('msg ', msgJson)
+
         ws.current.send(msgJson);
         ws.current.onmessage = function(e: any) {
           console.log(`[message] Data received from server${e.data}`);
+          let data: any = JSON.parse(e.data)
+          if (currentCrypto !== data.product_id) {
+            return;
+          } else {
+            let ticker: Ticker = {
+              token: data.product_id,
+              price: data.price,
+              open_24h: data.open_24h,
+              volume_24h: data.volume_24h,
+              low_24h: data.low_24h,
+              volume_30d: data.volume_30d
+            };
+            setTickerInfo(ticker)
+          }
         };
     };
 
     }
 
-  }, [props.firstRender, props.eachCurrency, ws])
+  }, [props.firstRender, props.eachCurrency, ws, currentCrypto])
 
 
   return (
     <div>
-      <h1>{ticker}</h1>
+      <h1>{currentCrypto.current}</h1>
       <CryptoChart eachCurrency={props.eachCurrency} getCryptoURL={props.getCryptoURL} firstRender={props.firstRender}/>
       <CryptoDetails tickerInfo={tickerInfo} />
     </div>

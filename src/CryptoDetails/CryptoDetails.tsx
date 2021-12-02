@@ -3,26 +3,28 @@ import CardContent from '@mui/material/CardContent';
 
 export interface Props {
   tickerInfo: {
-    open: string | null,
-    high: string | null,
-    low: string | null,
-    volume: string | null,
-    last: string | null
+    token: string | null,
+    price: string | null,
+    open_24h: string | null,
+    volume_24h: string | null,
+    low_24h: string | null,
+    volume_30d: string | null
   }
 };
 
 
 const CryptoDetails = (props: Props) => {
-  console.log('in details... ', props.tickerInfo)
+  //console.log('in details... ', props.tickerInfo)
   return (
     <div className="cryptoDetails">
       <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >
         <CardContent>
-          <p>Price: {props.tickerInfo.open}</p>
-          <p>Open: {props.tickerInfo.high}</p>
-          <p>Daily Low: {props.tickerInfo.low}</p>
-          <p>Daily Volume: {props.tickerInfo.volume}</p>
-          <p>Monthly Volume: {props.tickerInfo.last}</p>
+          <h4>{props.tickerInfo.token}</h4>
+          <p>Price: {props.tickerInfo.price}</p>
+          <p>Open: {props.tickerInfo.open_24h}</p>
+          <p>Daily Low: {props.tickerInfo.low_24h}</p>
+          <p>Daily Volume: {props.tickerInfo.volume_24h}</p>
+          <p>Monthly Volume: {props.tickerInfo.volume_30d}</p>
           <p>Change %: </p>
         </CardContent>
       </Paper>

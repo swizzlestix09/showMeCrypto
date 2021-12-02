@@ -35,7 +35,6 @@ const App: React.FC = () => {
           console.error(err);
         })
 
-
         usCurrencies = usCurrencies.sort((a: any, b: any) => {
           if (a.base_currency < b.base_currency) {
             return -1;
@@ -53,11 +52,15 @@ const App: React.FC = () => {
 
   }, []);
 
+  const handleCurrencyChange = (e: any) => {
+    console.log('in handle change', e)
+  };
+
   return !currencies ? null :
     (
       <div className="App">
-        <CryptoMenu currencies={currencies} clickCurrency={clickCurrency}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
+        <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} handleCurrencyChange={handleCurrencyChange}/>
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
       </div>
     );
 }

@@ -3,14 +3,15 @@ export interface Props {
   tokenId: string,
   tokenName: string,
   tokenSym: string,
-  clickCurrency?: any
+  clickCurrency?: any,
+  handleCurrencyChange: any
 };
 
 const CryptoItem = (props: Props) => {
   return (
     <>
       <MenuItem>
-        <button className="eachCryptoc" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
+        <button className="cryptobutton" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
           {`${props.tokenId} `}
         </button>
       </MenuItem>
