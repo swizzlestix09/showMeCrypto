@@ -3,8 +3,7 @@ export interface Props {
   tokenId: string,
   tokenName: string,
   tokenSym: string,
-  clickCurrency?: any,
-  handleCurrencyChange: any
+  clickCurrency?: any
 };
 
 const CryptoItem = (props: Props) => {

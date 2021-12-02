@@ -5,15 +5,21 @@ import axios from 'axios';
 import './App.css';
 const getCryptoURL = 'https://api.exchange.coinbase.com';
 
+// type Wsmsg = {
+//   type: string;
+//   product_ids?: any;
+//   channels: any[]
+// }
 
 const App: React.FC = () => {
-  const ws = useRef<string>('');
+  const ws = useRef<any>('');
   const firstRender = useRef<boolean>(false);
   const [currencies, setCurrencies] = useState<any[] >([]);
-  const [eachCurrency, getCurrencyInfo] = useState<string | null>(null);
+  const [eachCurrency, getCurrencyInfo] = useState<any[] >(['BTC-USD']);
 
   function clickCurrency(currencyId: any) {
     let ticker = currencyId.textContent.split(' ');
+    ws.current.close()
     getCurrencyInfo(ticker);
   };
 
@@ -52,15 +58,11 @@ const App: React.FC = () => {
 
   }, []);
 
-  const handleCurrencyChange = (e: any) => {
-    console.log('in handle change', e)
-  };
-
   return !currencies ? null :
     (
       <div className="App">
-        <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} handleCurrencyChange={handleCurrencyChange}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws}/>
+        <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} />
+        <CryptoInfo eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws}/>
       </div>
     );
 }

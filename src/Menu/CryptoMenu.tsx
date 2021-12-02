@@ -4,15 +4,14 @@ import MenuList from '@mui/material/MenuList';
 
 export interface Props {
   currencies: any[],
-  clickCurrency: any,
-  handleCurrencyChange: any
+  clickCurrency: any
 };
 
 const CryptoMenu = (props: Props) => {
 
   let listOfCrypto = props.currencies.map(token => {
     return (
-      <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} clickCurrency={props.clickCurrency} handleCurrencyChange={props.handleCurrencyChange}/>
+      <CryptoItem key={token.id} tokenId={token.id} tokenName={token.name} tokenSym={token.symbol} clickCurrency={props.clickCurrency} />
     );
   })
 

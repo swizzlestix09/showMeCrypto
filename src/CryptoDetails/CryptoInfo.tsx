@@ -5,7 +5,7 @@ import CryptoChart from './CryptoChart';
 
 export interface Props {
   ws: any;
-  eachCurrency: string | null;
+  eachCurrency: any[];
   getCryptoURL: string;
   firstRender: {}
 };
@@ -27,7 +27,6 @@ type Wsmsg = {
 }
 
 const CryptoInfo = (props: Props) => {
-  //const ws = useRef<any | null>(null);
   const currentCrypto = useRef< any | null>(null);
   const [tickerInfo, setTickerInfo] = useState<Ticker>({} as Ticker);
   let {firstRender, eachCurrency, ws} = props;
@@ -38,14 +37,12 @@ const CryptoInfo = (props: Props) => {
     }
    ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
-    if (eachCurrency !== null) {
-      console.log('TESTERRRRRRRR curCryp', currentCrypto.current, 'EachCur', eachCurrency[0])
       currentCrypto.current = eachCurrency[0];
 
       ws.current.onopen = ()=> {
         const msg: Wsmsg = {
           type: "subscribe",
-          product_ids: [ currentCrypto.current ],
+          product_ids: [currentCrypto.current],
           channels: ["ticker"]
         };
 
@@ -55,9 +52,7 @@ const CryptoInfo = (props: Props) => {
         ws.current.onmessage = function(e: any) {
           console.log(`[message] Data received from server${e.data}`);
           let data: any = JSON.parse(e.data)
-          if (currentCrypto.current !== data.product_id) {
-            return;
-          } else {
+          if (currentCrypto.current === data.product_id) {
             let ticker: Ticker = {
               token: data.product_id,
               price: data.price,
@@ -67,15 +62,15 @@ const CryptoInfo = (props: Props) => {
               volume_30d: data.volume_30d
             };
             setTickerInfo(ticker)
+          } else {
+            return;
           }
         };
-    };
 
     }
 
   }, [firstRender, eachCurrency, ws, currentCrypto])
 
-  console.log('FUCK ', tickerInfo)
   return (
     <div>
       <h1>{currentCrypto.current}</h1>

@@ -8,7 +8,7 @@ import {
 //import { useEffect, useRef, useState} from 'react';
 
 export interface Props {
-  eachCurrency: string | null;
+  eachCurrency: any[];
   getCryptoURL: string;
   firstRender: {}
 };
