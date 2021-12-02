@@ -39,19 +39,6 @@ const CryptoInfo = (props: Props) => {
     if (props.eachCurrency !== null) {
       console.log('TESTERRRRRRRR curCryp', currentCrypto.current, 'EachCur', props.eachCurrency[0])
       currentCrypto.current = props.eachCurrency[0];
-      if (currentCrypto.current !== props.eachCurrency[0] ) {
-        //unsubscribe from currentcrypto
-        let unsubscribe: Wsmsg = {
-          type: "unsubscribe",
-          product_ids: [ currentCrypto.current ],
-          channels: ["ticker"]
-        };
-        let unsub: string = JSON.stringify(unsubscribe)
-        ws.current.disconnect()
-        currentCrypto.current = props.eachCurrency[0];
-        //set current to props.eachCurrency
-      }
-
 
       ws.current.onopen = ()=> {
         const msg: Wsmsg = {
@@ -66,7 +53,7 @@ const CryptoInfo = (props: Props) => {
         ws.current.onmessage = function(e: any) {
           console.log(`[message] Data received from server${e.data}`);
           let data: any = JSON.parse(e.data)
-          if (currentCrypto !== data.product_id) {
+          if (currentCrypto.current !== data.product_id) {
             return;
           } else {
             let ticker: Ticker = {
@@ -86,7 +73,7 @@ const CryptoInfo = (props: Props) => {
 
   }, [props.firstRender, props.eachCurrency, ws, currentCrypto])
 
-
+  console.log('FUCK ', tickerInfo)
   return (
     <div>
       <h1>{currentCrypto.current}</h1>
