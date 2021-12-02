@@ -5,22 +5,16 @@ import {
   Chart,
   LineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
-import { useEffect } from 'react';
+//import { useEffect, useRef, useState} from 'react';
 
 export interface Props {
   eachCurrency: string | null;
-  ws: any;
   getCryptoURL: string;
   firstRender: {}
 };
 
-type Wsmsg = {
-  type: string;
-  ticker: (string | null)[];
-  channels: any[]
-}
-
 const CryptoChart = (props: Props) => {
+
   const dummydata: any[] = [
     [
       1638152337353,
@@ -35,28 +29,6 @@ const CryptoChart = (props: Props) => {
       57618.347730756235
     ]
   ]
-
-  useEffect( ()=>{
-    if (!props.firstRender) {
-      return;
-    }
-
-    const msg: Wsmsg = {
-      type: "subscribe",
-      ticker: [props.eachCurrency],
-      channels: ["ticker"]
-    };
-
-    const msgJson: string = JSON.stringify(msg);
-
-    if (props.ws.current !== null) {
-      props.ws.current.send(msgJson);
-    }
-
-
-
-  }, [props.firstRender, props.eachCurrency, props.ws])
-
 
   return (
     <div>

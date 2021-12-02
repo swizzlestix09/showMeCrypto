@@ -6,7 +6,8 @@ export interface Props {
     open: string | null,
     high: string | null,
     low: string | null,
-    volume: string | null
+    volume: string | null,
+    last: string | null
   }
 };
 
@@ -17,12 +18,12 @@ const CryptoDetails = (props: Props) => {
     <div className="cryptoDetails">
       <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >
         <CardContent>
-            <p>Open: {props.tickerInfo.open}</p>
-            <p>High: {props.tickerInfo.high}</p>
-            <p>Low: {props.tickerInfo.low}</p>
-            <p>Volume: {props.tickerInfo.volume}</p>
-            <p>Market Cap:</p>
-            <p>Change %: </p>
+          <p>Price: {props.tickerInfo.open}</p>
+          <p>Open: {props.tickerInfo.high}</p>
+          <p>Daily Low: {props.tickerInfo.low}</p>
+          <p>Daily Volume: {props.tickerInfo.volume}</p>
+          <p>Monthly Volume: {props.tickerInfo.last}</p>
+          <p>Change %: </p>
         </CardContent>
       </Paper>
     </div>

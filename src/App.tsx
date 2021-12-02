@@ -7,7 +7,7 @@ const getCryptoURL = 'https://api.exchange.coinbase.com';
 
 
 const App: React.FC = () => {
-  const ws = useRef<any | null>(null);
+
   const firstRender = useRef<boolean>(false);
   const [currencies, setCurrencies] = useState<any[] >([]);
   const [eachCurrency, getCurrencyInfo] = useState<string | null>(null);
@@ -18,8 +18,6 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-
-    ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
     const apiCallForCurrencies = async() => {
       let usCurrencies: [] = [];
@@ -59,7 +57,7 @@ const App: React.FC = () => {
     (
       <div className="App">
         <CryptoMenu currencies={currencies} clickCurrency={clickCurrency}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} ws={ws} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
       </div>
     );
 }
