@@ -2,6 +2,7 @@ import { useEffect, useRef, useState} from 'react';
 import CryptoDetails from './CryptoDetails';
 import CryptoChart from './CryptoChart';
 
+
 export interface Props {
   eachCurrency: string | null;
   getCryptoURL: string;
@@ -20,7 +21,7 @@ type Ticker = {
 
 type Wsmsg = {
   type: string;
-  product_ids: any;
+  product_ids?: any;
   channels: any[]
 }
 
@@ -40,6 +41,14 @@ const CryptoInfo = (props: Props) => {
       currentCrypto.current = props.eachCurrency[0];
       if (currentCrypto.current !== props.eachCurrency[0] ) {
         //unsubscribe from currentcrypto
+        let unsubscribe: Wsmsg = {
+          type: "unsubscribe",
+          product_ids: [ currentCrypto.current ],
+          channels: ["ticker"]
+        };
+        let unsub: string = JSON.stringify(unsubscribe)
+        ws.current.disconnect()
+        currentCrypto.current = props.eachCurrency[0];
         //set current to props.eachCurrency
       }
 
