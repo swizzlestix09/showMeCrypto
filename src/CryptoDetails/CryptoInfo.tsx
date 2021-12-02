@@ -4,6 +4,7 @@ import CryptoChart from './CryptoChart';
 
 
 export interface Props {
+  ws: any;
   eachCurrency: string | null;
   getCryptoURL: string;
   firstRender: {}
@@ -26,19 +27,20 @@ type Wsmsg = {
 }
 
 const CryptoInfo = (props: Props) => {
-  const ws = useRef<any | null>(null);
+  //const ws = useRef<any | null>(null);
   const currentCrypto = useRef< any | null>(null);
   const [tickerInfo, setTickerInfo] = useState<Ticker>({} as Ticker);
+  let {firstRender, eachCurrency, ws} = props;
 
   useEffect( ()=>{
-    if (!props.firstRender) {
+    if (!firstRender) {
       return;
     }
-    ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
+   ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
 
-    if (props.eachCurrency !== null) {
-      console.log('TESTERRRRRRRR curCryp', currentCrypto.current, 'EachCur', props.eachCurrency[0])
-      currentCrypto.current = props.eachCurrency[0];
+    if (eachCurrency !== null) {
+      console.log('TESTERRRRRRRR curCryp', currentCrypto.current, 'EachCur', eachCurrency[0])
+      currentCrypto.current = eachCurrency[0];
 
       ws.current.onopen = ()=> {
         const msg: Wsmsg = {
@@ -71,7 +73,7 @@ const CryptoInfo = (props: Props) => {
 
     }
 
-  }, [props.firstRender, props.eachCurrency, ws, currentCrypto])
+  }, [firstRender, eachCurrency, ws, currentCrypto])
 
   console.log('FUCK ', tickerInfo)
   return (

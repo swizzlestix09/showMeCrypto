@@ -7,7 +7,7 @@ const getCryptoURL = 'https://api.exchange.coinbase.com';
 
 
 const App: React.FC = () => {
-
+  const ws = useRef<string>('');
   const firstRender = useRef<boolean>(false);
   const [currencies, setCurrencies] = useState<any[] >([]);
   const [eachCurrency, getCurrencyInfo] = useState<string | null>(null);
@@ -60,7 +60,7 @@ const App: React.FC = () => {
     (
       <div className="App">
         <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} handleCurrencyChange={handleCurrencyChange}/>
-        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
+        <CryptoInfo eachCurrency={eachCurrency === null ? null : eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws}/>
       </div>
     );
 }
