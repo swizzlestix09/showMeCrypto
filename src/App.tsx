@@ -5,12 +5,6 @@ import axios from 'axios';
 import './App.css';
 const getCryptoURL = 'https://api.exchange.coinbase.com';
 
-// type Wsmsg = {
-//   type: string;
-//   product_ids?: any;
-//   channels: any[]
-// }
-
 const App: React.FC = () => {
   const ws = useRef<any>('');
   const firstRender = useRef<boolean>(false);
@@ -25,7 +19,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
 
-    const apiCallForCurrencies = async() => {
+    const apiCallForCurrencies = async () => {
       let usCurrencies: [] = [];
 
       await axios.get(getCryptoURL + '/products')

@@ -29,7 +29,7 @@ type Wsmsg = {
 const CryptoInfo = (props: Props) => {
   const currentCrypto = useRef< any | null>(null);
   const [tickerInfo, setTickerInfo] = useState<Ticker>({} as Ticker);
-  let {firstRender, eachCurrency, ws} = props;
+  const {firstRender, eachCurrency, ws} = props;
 
   useEffect( ()=>{
     if (!firstRender) {
@@ -50,7 +50,7 @@ const CryptoInfo = (props: Props) => {
 
         ws.current.send(msgJson);
         ws.current.onmessage = function(e: any) {
-          console.log(`[message] Data received from server${e.data}`);
+          //console.log(`[message] Data received from server${e.data}`);
           let data: any = JSON.parse(e.data)
           if (currentCrypto.current === data.product_id) {
             let ticker: Ticker = {
