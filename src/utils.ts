@@ -22,8 +22,8 @@ export const formatData = (data: []) => {
 
 export const apiCallForCurrencies = async (
   url: string,
-  setCurrency: any,
-  renderTrue: any
+  setCurrency: (a: []) => void,
+  renderTrue: boolean
 ) => {
   let usCurrencies: [] = [];
 
@@ -54,16 +54,21 @@ export const apiCallForCurrencies = async (
   renderTrue = true;
 };
 
-export const getHistoricalCoinData = async (url: string, setData: any, historyArr: [], eachCur: any) => {
-
+export const getHistoricalCoinData = async (
+  url: string,
+  setData: (a: []) => void,
+  historyArr: [],
+  eachCur: any
+) => {
   const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=300&start=12-01-2021&end=12-02-2021`;
 
-  await axios.get(candleURL)
-    .then((res: any) => (res.data))
-    .then((data) => (historyArr = data))
-    .catch(error => console.error(error))
+  await axios
+    .get(candleURL)
+    .then((res: any) => res.data)
+    .then((data: any) => (historyArr = data))
+    .catch((error: any) => console.error(error));
 
   let formattedHistory: any = formatData(historyArr);
-  console.log(formattedHistory)
+  console.log(" STOP RENDERINGNGNGNGNNGN ", formattedHistory);
   setData(formattedHistory);
 };

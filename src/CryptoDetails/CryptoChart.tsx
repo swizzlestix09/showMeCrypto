@@ -19,13 +19,11 @@ const CryptoChart = (props: Props) => {
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
   useEffect(() => {
-
-
     let history: [] = [];
 
     getHistoricalCoinData(getCryptoURL, setHistoricalData, history, eachCurrency);
 
-  }, [eachCurrency, getCryptoURL, historicalCoinData]);
+  }, [eachCurrency, getCryptoURL]);
 
   return (
     <div>

@@ -12,6 +12,7 @@ const App: React.FC = () => {
   const [eachCurrency, getCurrencyInfo] = useState<any[]>(['BTC-USD']);
 
   const clickCurrency = (currencyId: any) => {
+    console.log(typeof currencyId)
     let ticker = currencyId.textContent.split(' ');
     ws.current.close()
     getCurrencyInfo(ticker);
@@ -27,6 +28,6 @@ const App: React.FC = () => {
         <CryptoInfo eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws} />
       </div>
     );
-}
+};
 
 export default App;

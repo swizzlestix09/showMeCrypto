@@ -1,3 +1,4 @@
+import React from 'react';
 import CryptoItem from "./CryptoItem";
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';

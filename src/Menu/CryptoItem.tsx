@@ -9,7 +9,7 @@ export interface Props {
 const CryptoItem = (props: Props) => {
   return (
     <>
-      <MenuItem className="cryptoparam" value={props.tokenId} onClick={(e) => props.clickCurrency(e.target)}>
+      <MenuItem className="cryptoparam" value={props.tokenId} onClick={(e) => props.clickCurrency( e.target )}>
           {`${props.tokenId} `}
       </MenuItem>
     </>
