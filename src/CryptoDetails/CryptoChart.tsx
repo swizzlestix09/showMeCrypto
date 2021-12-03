@@ -31,7 +31,7 @@ const CryptoChart = (props: Props) => {
         <Chart data={historicalCoinData}>
           <ValueAxis />
           <LineSeries valueField="1" argumentField="0" />
-          <ArgumentAxis />
+          <ArgumentAxis showLabels={false} />
         </Chart>
       </Paper>
     </div>
