@@ -14,16 +14,17 @@ export interface Props {
 
 
 const CryptoDetails = (props: Props) => {
+  const { token, price, open_24h, volume_24h, low_24h, volume_30d} = props.tickerInfo;
   return (
     <div className="cryptoDetails">
       <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >
         <CardContent>
-          <h4>{props.tickerInfo.token}</h4>
-          <p>Price: {props.tickerInfo.price}</p>
-          <p>Open: {props.tickerInfo.open_24h}</p>
-          <p>Daily Low: {props.tickerInfo.low_24h}</p>
-          <p>Daily Volume: {props.tickerInfo.volume_24h}</p>
-          <p>Monthly Volume: {props.tickerInfo.volume_30d}</p>
+          <h4>{token}</h4>
+          <p>Price: {price}</p>
+          <p>Open: {open_24h}</p>
+          <p>Daily Low: {low_24h}</p>
+          <p>Daily Volume: {volume_24h}</p>
+          <p>Monthly Volume: {volume_30d}</p>
         </CardContent>
       </Paper>
     </div>

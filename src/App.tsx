@@ -11,7 +11,7 @@ const App: React.FC = () => {
   const [currencies, setCurrencies] = useState<any[]>([]);
   const [eachCurrency, getCurrencyInfo] = useState<any[]>(['BTC-USD']);
 
-  function clickCurrency(currencyId: any) {
+  const clickCurrency = (currencyId: any) => {
     let ticker = currencyId.textContent.split(' ');
     ws.current.close()
     getCurrencyInfo(ticker);
@@ -21,8 +21,7 @@ const App: React.FC = () => {
     apiCallForCurrencies(getCryptoURL, setCurrencies, firstRender.current);
   }, []);
 
-  return !currencies ? null :
-    (
+  return (
       <div className="App">
         <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} />
         <CryptoInfo eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws} />

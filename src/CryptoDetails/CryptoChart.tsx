@@ -1,5 +1,5 @@
 import Paper from '@mui/material/Paper';
-import axios from 'axios';
+import { getHistoricalCoinData } from '../utils';
 import { useEffect, useState } from 'react';
 import {
   ArgumentAxis,
@@ -7,7 +7,6 @@ import {
   Chart,
   LineSeries,
 } from '@devexpress/dx-react-chart-material-ui';
-import { formatData } from '../utils';
 
 export interface Props {
   eachCurrency: any[];
@@ -16,27 +15,17 @@ export interface Props {
 };
 
 const CryptoChart = (props: Props) => {
-  const { eachCurrency, getCryptoURL, firstRender } = props;
+  const { eachCurrency, getCryptoURL } = props;
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
   useEffect(() => {
 
-    const candleURL: string = `${getCryptoURL}/products/${eachCurrency[0]}/candles?granularity=300&start=12-01-2021&end=12-02-2021`;
+
     let history: [] = [];
 
-    const gethistoricalCoinData = async () => {
-      await axios.get(candleURL)
-        .then((res: any) => (res.data))
-        .then((data) => (history = data))
-        .catch(error => console.error(error))
+    getHistoricalCoinData(getCryptoURL, setHistoricalData, history, eachCurrency);
 
-      let formattedHistory: any = formatData(history);
-      console.log(formattedHistory)
-      setHistoricalData(formattedHistory);
-    }
-    gethistoricalCoinData();
-
-  }, [eachCurrency, firstRender, getCryptoURL, historicalCoinData]);
+  }, [eachCurrency, getCryptoURL, historicalCoinData]);
 
   return (
     <div>
