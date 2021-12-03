@@ -17,7 +17,7 @@ const App: React.FC = () => {
     getCurrencyInfo(ticker);
   };
 
-  useEffect(() => {
+  useEffect( () => {
 
     const apiCallForCurrencies = async () => {
       let usCurrencies: [] = [];

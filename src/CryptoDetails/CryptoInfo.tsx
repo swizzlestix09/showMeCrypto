@@ -35,11 +35,11 @@ const CryptoInfo = (props: Props) => {
     if (!firstRender) {
       return;
     }
-   ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com')
+   ws.current = new WebSocket('wss://ws-feed.exchange.coinbase.com');
 
       currentCrypto.current = eachCurrency[0];
 
-      ws.current.onopen = ()=> {
+      ws.current.onopen = () => {
         const msg: Wsmsg = {
           type: "subscribe",
           product_ids: [currentCrypto.current],
