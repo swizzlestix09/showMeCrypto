@@ -17,7 +17,7 @@
 
 .cryptoDetails {
   text-align: center;
-  max-width: 100%;
+  max-width: fit-content;
 }
 
 .App-header {

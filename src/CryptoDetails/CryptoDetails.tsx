@@ -14,7 +14,6 @@ export interface Props {
 
 
 const CryptoDetails = (props: Props) => {
-  //console.log('in details... ', props.tickerInfo)
   return (
     <div className="cryptoDetails">
       <Paper sx={{ width: '100vh', maxWidth: '100%' }} elevation={16} >

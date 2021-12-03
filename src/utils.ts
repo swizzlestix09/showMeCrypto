@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 export const formatData = ( data: [] ) => {
   //Candle schema is of the form [timestamp, price_low, price_high, price_open, price_close]
@@ -19,6 +20,37 @@ export const formatData = ( data: [] ) => {
 
   return modifiedData.reverse();
 
+};
+
+export const apiCallForCurrencies = async (url:string, setCurrency: any, renderTrue: any) => {
+  let usCurrencies: [] = [];
+
+  await axios.get(url + '/products')
+    .then( (res: any) => {
+      return res.data
+    })
+    .then( (cryptoInfo: any) => {
+      usCurrencies = cryptoInfo.filter((curr: any) => {
+        if (curr.quote_currency === 'USD') {
+          return curr;
+        }
+      });
+    })
+    .catch( (err: any) =>
+      console.error(err)
+    )
+
+    usCurrencies = usCurrencies.sort((a: any, b: any) => {
+      if (a.base_currency < b.base_currency) {
+        return -1;
+        }
+      if (a.base_currency > b.base_currency) {
+        return 1;
+        }
+      return 0;
+    })
+    setCurrency(usCurrencies);
+  renderTrue = true;
 };
 
 
