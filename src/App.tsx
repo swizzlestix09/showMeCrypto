@@ -5,7 +5,7 @@ import axios from "axios";
 import './App.css';
 const getCryptoURL = 'https://api.exchange.coinbase.com';
 
-const App = () => {
+const App: React.FC = () => {
   const ws = useRef<any>('');
   const firstRender = useRef<boolean>(false);
   const [currencies, setCurrencies] = useState<any[]>([]);
@@ -29,7 +29,7 @@ const App = () => {
     })
       .then( (res: any) => {
         setCurrencies(res.data)
-        firstRender.current = true;
+        firstRender.current = true
       })
 
   }, []);

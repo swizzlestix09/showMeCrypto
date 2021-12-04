@@ -1,28 +1,32 @@
 import axios from "axios";
 
+type PriceData = {
+  dateTime: string;
+  price: number;
+};
+
 export const formatData = (data: []) => {
-  //Candle schema is of the form [timestamp, price_low, price_high, price_open, price_close]
   let modifiedData = data.map((info: any[]) => {
     let timestamp: number = info[0];
     let price: number = info[4] > 1 ? Math.round(info[4] * 100) / 100 : info[4];
     let date: Date = new Date(timestamp * 1000);
 
-    let day: number = date.getDay();
-    let month: number = date.getMonth();
-    let year: number = date.getFullYear();
-    let hour: number = date.getHours();
-    let minutes: number = date.getMinutes();
+    let newDate: string = date.toUTCString();
 
-    let dayAndTime: string = `${day}-${month}-${year}, ${hour}:${minutes}0 GMT`;
-    return [dayAndTime, price];
+    let dayAndTime: string = `${newDate}
+    ${price}`;
+
+    let PriceDateInfo: PriceData = {
+      dateTime: dayAndTime,
+      price,
+    };
+    return PriceDateInfo;
   });
 
   return modifiedData.reverse();
 };
 
-export const apiCallForCurrencies = async (
-  url: any
-) => {
+export const apiCallForCurrencies = async (url: any) => {
   let usCurrencies: [] = [];
 
   await axios
@@ -55,9 +59,11 @@ export const apiCallForCurrencies = async (
 export const getHistoricalCoinData = async (
   url: any,
   historyArr: [],
-  eachCur: any
+  eachCur: any,
+  start: string = "12-01-2021",
+  end: string = "12-02-2021"
 ) => {
-  const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=300&start=12-01-2021&end=12-02-2021`;
+  const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=900`;
 
   await axios
     .get(candleURL)

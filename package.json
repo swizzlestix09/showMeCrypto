@@ -20,6 +20,7 @@
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "devextreme-react": "^21.2.3",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

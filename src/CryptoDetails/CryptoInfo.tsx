@@ -29,7 +29,7 @@ type Wsmsg = {
 const CryptoInfo = (props: Props) => {
   const currentCrypto = useRef< any | null>(null);
   const [tickerInfo, setTickerInfo] = useState<Ticker>({} as Ticker);
-  const {firstRender, eachCurrency, ws} = props;
+  const {firstRender, eachCurrency, getCryptoURL, ws} = props;
 
   useEffect( ()=>{
     if (!firstRender) {
@@ -74,7 +74,7 @@ const CryptoInfo = (props: Props) => {
   return (
     <div>
       <h1>{currentCrypto.current}</h1>
-      <CryptoChart eachCurrency={props.eachCurrency} getCryptoURL={props.getCryptoURL} firstRender={props.firstRender}/>
+      <CryptoChart eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
       <CryptoDetails tickerInfo={tickerInfo} />
     </div>
   )

@@ -1,12 +1,15 @@
-import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import {
-  ArgumentAxis,
-  ValueAxis,
   Chart,
-  LineSeries,
-} from '@devexpress/dx-react-chart-material-ui';
+  Series,
+  Size,
+  Grid,
+  Tooltip,
+  ValueAxis,
+  ArgumentAxis,
+} from 'devextreme-react/chart';
 
 export interface Props {
   eachCurrency: any[];
@@ -21,31 +24,45 @@ const CryptoChart = (props: Props) => {
   useEffect(() => {
     axios.get('http://localhost:3002/getHistoricalData', {
       params: {
-        getCryptoURL,
         setHistoricalData,
+        getCryptoURL,
         eachCurrency
       }
     })
-    .then( res => {
-      setHistoricalData(res.data)
-    })
+      .then(res => {
+        setHistoricalData(res.data)
+      })
 
     console.log(historicalCoinData)
-  }, [eachCurrency, getCryptoURL]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
-
+  const customizeTooltip = (arg: any) => {
+    return {
+      text: `Date: ${arg.argument}
+      Price: ${arg.valueText}`
+    };
+  }
 
   return (
-    <div>
-      <Paper>
-        <Chart data={historicalCoinData}>
-          <ValueAxis />
-          <LineSeries valueField="1" argumentField="0" />
-          <ArgumentAxis showLabels={false} showTicks={false}/>
-        </Chart>
-      </Paper>
-    </div>
+    <>
+    <Chart id="priceChart" title="Prices" dataSource={historicalCoinData}>
+    <Size height={500} width={700}/>
+      <ValueAxis valueType="price">
+        <ArgumentAxis allowDecimals={false} />
+        <Grid opacity={0.2} />
+      </ValueAxis>
+      <Series
+        name="Prices and Dates"
+        argumentField="dateTime"
+        valueField="price"
+        type="spline"
+      />
+      <Tooltip enabled={true} customizeTooltip={customizeTooltip} />
+    </Chart>
+    <Divider variant="middle" />
+    </>
   )
 };
 
-export default CryptoChart
+export default CryptoChart;
