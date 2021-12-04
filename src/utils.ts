@@ -4,7 +4,7 @@ export const formatData = (data: []) => {
   //Candle schema is of the form [timestamp, price_low, price_high, price_open, price_close]
   let modifiedData = data.map((info: any[]) => {
     let timestamp: number = info[0];
-    let price: string = info[4];
+    let price: number = Number(info[4].toFixed(2));
     let date: Date = new Date(timestamp * 1000);
 
     let day: number = date.getDay();
@@ -56,19 +56,26 @@ export const apiCallForCurrencies = async (
 
 export const getHistoricalCoinData = async (
   url: string,
-  setData: (a: []) => void,
   historyArr: [],
   eachCur: any
 ) => {
+  console.log('SDJWEINDOWOEFAFM ', eachCur)
   const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=300&start=12-01-2021&end=12-02-2021`;
 
   await axios
-    .get(candleURL)
-    .then((res: any) => res.data)
-    .then((data: any) => (historyArr = data))
-    .catch((error: any) => console.error(error));
+  .get(candleURL)
+  .then((res: any) => res.data)
+  .then((data: any) => (historyArr = data))
+  .catch((error: any) => console.error(error));
 
   let formattedHistory: any = formatData(historyArr);
-  console.log(" STOP RENDERINGNGNGNGNNGN ", formattedHistory);
-  setData(formattedHistory);
+
+  return formattedHistory;
+
 };
+//maybe button for 3 mo or 6 mo... values stores are 3/6 respectively then use this
+// var d = new Date();
+// d.setMonth(d.getMonth() - 6);
+// console.log(d);
+//how to change dates however need to change mo to number & need to get rid of additional unnecessary information
+//default value can be the day. day, 3 mo, 6 mo.

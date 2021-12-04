@@ -1,5 +1,5 @@
 import Paper from '@mui/material/Paper';
-import { getHistoricalCoinData } from '../utils';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import {
   ArgumentAxis,
@@ -19,11 +19,24 @@ const CryptoChart = (props: Props) => {
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
   useEffect(() => {
-    let history: [] = [];
 
-    getHistoricalCoinData(getCryptoURL, setHistoricalData, history, eachCurrency);
 
+    // getHistoricalCoinData(getCryptoURL, setHistoricalData, history, eachCurrency);
+    axios.get('http://localhost:3002/getHistoricalData', {
+      params: {
+        getCryptoURL,
+        setHistoricalData,
+        eachCurrency
+      }
+    })
+    .then( res => {
+      setHistoricalData(res.data)
+    })
+
+    console.log(historicalCoinData)
   }, [eachCurrency, getCryptoURL]);
+
+
 
   return (
     <div>
