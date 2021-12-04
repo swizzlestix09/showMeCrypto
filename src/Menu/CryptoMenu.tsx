@@ -17,10 +17,10 @@ const CryptoMenu = (props: Props) => {
 
   return (
     <>
-      <Paper sx={{ maxWidth: 'fit-content' }}>
+      <Paper sx={{ maxWidth: 'fit-content', padding: '20px 20px' }}>
         <h3>CryptoCurrencies</h3>
         <Typography noWrap>
-          <MenuList dense>
+          <MenuList dense style={{maxHeight: 800, overflow: 'auto'}}>
             {listOfCrypto}
           </MenuList>
         </Typography>

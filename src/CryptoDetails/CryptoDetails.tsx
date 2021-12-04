@@ -1,5 +1,4 @@
-import Paper from '@mui/material/Paper';
-import CardContent from '@mui/material/CardContent';
+import Container from '@mui/material/Container';
 
 export interface Props {
   tickerInfo: {
@@ -14,17 +13,17 @@ export interface Props {
 
 
 const CryptoDetails = (props: Props) => {
-  const { token, price, open_24h, volume_24h, low_24h, volume_30d} = props.tickerInfo;
+  const { token, price, open_24h, volume_24h, low_24h, volume_30d } = props.tickerInfo;
   return (
-    <div className="cryptoDetails">
-          <h4>{token}</h4>
-          <p>Price: {price}</p>
-          <p>Open: {open_24h}</p>
-          <p>Daily Low: {low_24h}</p>
-          <p>Daily Volume: {volume_24h}</p>
-          <p>Monthly Volume: {volume_30d}</p>
+    <Container>
+      <h4>{token}</h4>
+      <p>Price: {price}</p>
+      <p>Open: {open_24h}</p>
+      <p>Daily Low: {low_24h}</p>
+      <p>Daily Volume: {volume_24h}</p>
+      <p>Monthly Volume: {volume_30d}</p>
+    </Container>
 
-    </div>
   )
 };
 

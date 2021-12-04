@@ -10,6 +10,7 @@ import {
   ValueAxis,
   ArgumentAxis,
 } from 'devextreme-react/chart';
+import { Container } from '@mui/material';
 
 export interface Props {
   eachCurrency: any[];
@@ -32,8 +33,6 @@ const CryptoChart = (props: Props) => {
       .then(res => {
         setHistoricalData(res.data)
       })
-
-    console.log(historicalCoinData)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
@@ -46,21 +45,23 @@ const CryptoChart = (props: Props) => {
 
   return (
     <>
-    <Chart id="priceChart" title="Prices" dataSource={historicalCoinData}>
-    <Size height={500} width={700}/>
-      <ValueAxis valueType="price">
-        <ArgumentAxis allowDecimals={false} />
-        <Grid opacity={0.2} />
-      </ValueAxis>
-      <Series
-        name="Prices and Dates"
-        argumentField="dateTime"
-        valueField="price"
-        type="spline"
-      />
-      <Tooltip enabled={true} customizeTooltip={customizeTooltip} />
-    </Chart>
-    <Divider variant="middle" />
+      <Container>
+        <Chart id="priceChart" dataSource={historicalCoinData}>
+          <Size height={500} width={700} />
+          <ValueAxis valueType={"price"}>
+            <Grid opacity={0.2} />
+          </ValueAxis>
+          <Series
+            name="Prices and Dates"
+            argumentField="dateTime"
+            valueField="price"
+            type="spline"
+          />
+          <Tooltip enabled={true} customizeTooltip={customizeTooltip} />
+          <ArgumentAxis />
+        </Chart>
+        <Divider variant="middle" />
+      </Container>
     </>
   )
 };

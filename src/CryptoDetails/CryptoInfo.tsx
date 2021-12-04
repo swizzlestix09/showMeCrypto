@@ -72,9 +72,9 @@ const CryptoInfo = (props: Props) => {
   }, [firstRender, eachCurrency, ws, currentCrypto])
 
   return (
-    <div>
+    <div className='cryptoInfo'>
       <h1>{currentCrypto.current}</h1>
-      <CryptoChart eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender}/>
+      <CryptoChart eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
       <CryptoDetails tickerInfo={tickerInfo} />
     </div>
   )
