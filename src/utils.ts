@@ -4,7 +4,7 @@ export const formatData = (data: []) => {
   //Candle schema is of the form [timestamp, price_low, price_high, price_open, price_close]
   let modifiedData = data.map((info: any[]) => {
     let timestamp: number = info[0];
-    let price: number = info[4];
+    let price: number = info[4] > 1 ? Math.round(info[4] * 100) / 100 : info[4];
     let date: Date = new Date(timestamp * 1000);
 
     let day: number = date.getDay();
@@ -21,7 +21,7 @@ export const formatData = (data: []) => {
 };
 
 export const apiCallForCurrencies = async (
-  url: string
+  url: any
 ) => {
   let usCurrencies: [] = [];
 
@@ -53,7 +53,7 @@ export const apiCallForCurrencies = async (
 };
 
 export const getHistoricalCoinData = async (
-  url: string,
+  url: any,
   historyArr: [],
   eachCur: any
 ) => {
