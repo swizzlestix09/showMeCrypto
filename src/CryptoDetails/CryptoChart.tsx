@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import {
   Chart,
   Series,
+  Label,
   Size,
   Grid,
   Tooltip,
-  ValueAxis,
-  ArgumentAxis,
+  LoadingIndicator,
+  ValueAxis
 } from 'devextreme-react/chart';
 import { Container } from '@mui/material';
 
@@ -36,13 +37,6 @@ const CryptoChart = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
-  const customizeTooltip = (arg: any) => {
-    return {
-      text: `Date: ${arg.argument}
-      Price: ${arg.valueText}`
-    };
-  }
-
   return (
     <>
       <Container>
@@ -52,13 +46,15 @@ const CryptoChart = (props: Props) => {
             <Grid opacity={0.2} />
           </ValueAxis>
           <Series
-            name="Prices and Dates"
+            name="Prices"
             argumentField="dateTime"
             valueField="price"
             type="spline"
           />
-          <Tooltip enabled={true} customizeTooltip={customizeTooltip} />
-          <ArgumentAxis />
+          <Tooltip
+            enabled={true} />
+            <LoadingIndicator enabled={true} />
+          <Label visible={false} />
         </Chart>
         <Divider variant="middle" />
       </Container>
