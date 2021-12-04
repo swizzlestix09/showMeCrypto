@@ -19,9 +19,6 @@ const CryptoChart = (props: Props) => {
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
   useEffect(() => {
-
-
-    // getHistoricalCoinData(getCryptoURL, setHistoricalData, history, eachCurrency);
     axios.get('http://localhost:3002/getHistoricalData', {
       params: {
         getCryptoURL,

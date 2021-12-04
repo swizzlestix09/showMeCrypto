@@ -11,13 +11,10 @@ app.use(express.urlencoded({ extended: false }));
 const port = 3002;
 
 app.get("/getHistoricalData", (req, res) => {
-  console.log("NOOOOO", req.query);
   const { getCryptoURL, eachCurrency } = req.query;
   const history: [] = [];
 
-  console.log(getCryptoURL, eachCurrency);
-
-  getHistoricalCoinData( getCryptoURL, history, eachCurrency)
+  getHistoricalCoinData( getCryptoURL, history, eachCurrency )
     .then((data: {}) => {
       res.status(200).json(data);
     })
@@ -26,6 +23,19 @@ app.get("/getHistoricalData", (req, res) => {
       res.status(401).send(err);
     });
 });
+
+app.get("/getAllCurrencies", (req, res) => {
+
+  const { getCryptoURL } = req.query;
+  apiCallForCurrencies( getCryptoURL )
+  .then((data: {}) => {
+    res.status(200).json(data);
+  })
+  .catch((err: any) => {
+    console.log(err);
+    res.status(401).send(err);
+  });
+})
 
 app.listen(port, () => {
   console.dir(`We are listening on port: ${port}`);

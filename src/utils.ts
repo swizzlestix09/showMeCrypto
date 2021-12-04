@@ -4,7 +4,7 @@ export const formatData = (data: []) => {
   //Candle schema is of the form [timestamp, price_low, price_high, price_open, price_close]
   let modifiedData = data.map((info: any[]) => {
     let timestamp: number = info[0];
-    let price: number = Number(info[4].toFixed(2));
+    let price: number = info[4];
     let date: Date = new Date(timestamp * 1000);
 
     let day: number = date.getDay();
@@ -21,9 +21,7 @@ export const formatData = (data: []) => {
 };
 
 export const apiCallForCurrencies = async (
-  url: string,
-  setCurrency: (a: []) => void,
-  renderTrue: boolean
+  url: string
 ) => {
   let usCurrencies: [] = [];
 
@@ -50,8 +48,8 @@ export const apiCallForCurrencies = async (
     }
     return 0;
   });
-  setCurrency(usCurrencies);
-  renderTrue = true;
+
+  return usCurrencies;
 };
 
 export const getHistoricalCoinData = async (
@@ -59,19 +57,17 @@ export const getHistoricalCoinData = async (
   historyArr: [],
   eachCur: any
 ) => {
-  console.log('SDJWEINDOWOEFAFM ', eachCur)
   const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=300&start=12-01-2021&end=12-02-2021`;
 
   await axios
-  .get(candleURL)
-  .then((res: any) => res.data)
-  .then((data: any) => (historyArr = data))
-  .catch((error: any) => console.error(error));
+    .get(candleURL)
+    .then((res: any) => res.data)
+    .then((data: any) => (historyArr = data))
+    .catch((error: any) => console.error(error));
 
   let formattedHistory: any = formatData(historyArr);
 
   return formattedHistory;
-
 };
 //maybe button for 3 mo or 6 mo... values stores are 3/6 respectively then use this
 // var d = new Date();
