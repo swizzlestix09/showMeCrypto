@@ -1,12 +1,11 @@
 import { Schema, model, connect } from "mongoose";
 const database: string = "mongodb://localhost:27017/faveCrypto";
-// 1. Create an interface representing a document in MongoDB.
+
 interface User {
   ip: string;
   email: string;
 }
 
-// 2. Create a Schema corresponding to the document interface.
 const schema = new Schema<User>({
   ip: { type: String, required: true },
   email: { type: String, required: false },

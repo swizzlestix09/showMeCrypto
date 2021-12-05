@@ -3,9 +3,7 @@ import axios from 'axios';
 import CryptoDetails from './CryptoDetails';
 import CryptoChart from './CryptoChart';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
 
 export interface Props {
   ws: any;
@@ -57,7 +55,7 @@ const CryptoInfo = (props: Props) => {
   const submitEmail = () => {
     let ipAdd = ip.current;
     axios.put('http://localhost:3002/emailUpdate', {ipAdd, email} )
-    .then(confirmed => {
+    .then(()=> {
       setEmail('')
     })
     .catch(error => {
@@ -111,7 +109,7 @@ const CryptoInfo = (props: Props) => {
       <CryptoChart eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
       <CryptoDetails tickerInfo={tickerInfo} />
       <h6> We're saving your IP address for future features. Don't like that? Hit Delete Below:</h6>
-      <Button variant="outlined" onClick={deleteRecord} > Outlined </Button>
+      <Button variant="outlined" onClick={deleteRecord} > Delete </Button>
       <h6>{isDeleted.current && 'deleted'}</h6>
       <h6> Are you someone that wants to be in the know? Give us your email!:</h6>
       <form onSubmit={submitEmail}>
@@ -128,29 +126,3 @@ const CryptoInfo = (props: Props) => {
 };
 
 export default CryptoInfo;
-
-// checked={checked}
-// onChange={handleChange}
-
-//const handleChange = (e: any) => {
-  //   // let list: [] = []
-  //   // setFaveCrypto(!faveCrypto)
-  //   // let selectedCrypto = e.target.value;
-
-  //   // if (favoritesList.length === 0) {
-  //   //   axios.post('http://localhost:3002/saveCrypto', { selectedCrypto, ip })
-  //   //     .then((res: any) => {
-  //   //       list = res.data
-  //   //     })
-  //   //     .then((list: any) => {
-  //   //       updateFavoritesList(list);
-  //   //     })
-  //   //     .catch(err => console.error(err))
-  //   // }
-  //   // else if (favoritesList.length > 0) {
-  //   //   //update list
-  //   // } else {
-  //   // }
-  // };
-
-  // <FormControlLabel value={currentCrypto.current} control={<Switch defaultChecked />} label="Favorite" onChange={(e) => { handleChange(e) }} />

@@ -25,7 +25,6 @@ app.get("/getHistoricalData", (req, res) => {
 });
 
 app.get("/getAllCurrencies", (req, res) => {
-
   const { getCryptoURL } = req.query;
   apiCallForCurrencies( getCryptoURL )
   .then((data: {}) => {
@@ -40,18 +39,6 @@ app.get("/getAllCurrencies", (req, res) => {
 app.post("/saveIP", (req, res) => {
   saveIp(req.body.ipAddress);
 });
-
-// app.post("/saveCrypto", (req, res) => {
-//   let { selectedCrypto, ip } = req.body;
-//   saveCrypto(ip.current, selectedCrypto)
-//   .then(( data ) => {
-//     res.status(200).json(data);
-//   })
-//   .catch( (error) => {
-//     console.error(error);
-//     res.status(502);
-//   })
-// });
 
 app.delete("/deleteRecord", (req, res) => {
   let ip = req.body.ip.current
