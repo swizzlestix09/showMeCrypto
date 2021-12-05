@@ -38,12 +38,13 @@ const CryptoChart: React.FC <Props> = (props: Props) => {
         setHistoricalData(res.data)
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    setChartOptions({
+      id: "priceChart" ,
+      dataSource: historicalCoinData
+    })
+
   }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
-  setChartOptions({
-    id: "priceChart" ,
-    dataSource: historicalCoinData
-  })
   return (
     <>
       <Container>

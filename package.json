@@ -10,13 +10,12 @@
     "scripts": {
     "start": "node ./index.js",
     "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
-    "watch-node": "nodemon dist/index.js",
+    "watch-node": "nodemon server/server.ts",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "clean": "rm dist/bundle.js",
-    "build-dev": "webpack --mode development",
-    "build-prod": "webpack --mode production",
-    "test": "nodemon server/server.ts"
+    "build-dev": "webpack serve --hot --mode development",
+    "build-prod": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
