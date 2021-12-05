@@ -43,7 +43,7 @@ const CryptoChart: React.FC <Props> = (props: Props) => {
       dataSource: historicalCoinData
     })
 
-  }, [eachCurrency, getCryptoURL, setHistoricalData]);
+  }, [eachCurrency, getCryptoURL, setChartOptions, setHistoricalData]);
 
   return (
     <>
