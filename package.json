@@ -8,7 +8,7 @@
     "npm": "6.14.15"
   },
     "scripts": {
-    "start": "node dist/public/index.js",
+    "start": "node index.js",
     "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
     "watch-node": "nodemon server/server.ts",
     "watch-ts": "tsc -w",
