@@ -11,17 +11,43 @@
 An application designed to show you a list of USD Cryptocurrencies, which upon selection will render a 5-day price chart. Hovering over the chart line will show you the price at that time. Upon load, this application will capture your IP address to create a record in which we can save your email if you would like to be notified of future features. If you don’t want your email stored, we can remove it upon request.
 
 
+## Architecture/ File structure:
+$ tree
+
+├── database
+│   └── index.ts
+│
+├── dist
+│   └── bundle.js
+│   └── bundle.js.LICENSE.txt
+│   └── index.html
+├── server
+│   ├── server.ts
+├── src
+│   ├── CryptoDetails
+│           └── CryptoChart.tsx
+│           └── CryptoDetails.tsx
+│           └── CryptoInfo.tsx
+│   ├── Menu
+│           └── CryptoItem.tsx
+│           └── CryptoMenu.tsx
+├── App.tsx
+├── App.css
+├── Index.css
+├── Index.tsx
+├── Utils.ts
+└.babelrc, gitignore, readme, config files etc.
 
 ## Features:
 
 
 - _Simplistic Design_: This page was designed utilizing Material UI to keep it simple yet styled.
 
-- _List_: The user mainly interacts with a timer- that is the first focal point of the page. There is a slider that allows you to set up to 10 minutes on the timer for your meditative needs.
+- _List_: When a user visits the page, a list is rendered with all the cryptos available in USD. This list is scrollable, meaning the user doesn’t have to scroll through the whole site to find the crypto they desire, they can just scroll the list rendered.
 
-- _Chart_: Pesky Kids? Doorbell ringing? Unexpected Zoom meeting? No worries; we anticipated you would be a busy boss. We've implemented a start/pause button using setInterval & clear interval, as well as a reset button in case you got so distracted you forgot about us (it's okay - we don't take it personally)
+- _Chart_: A chart with 5 days worth of prices will render upon load ( Defaulting to BTC-USD). Upon click of a list item, the chart will re-render with information from the coin selected.
 
-- _Email Storage / Deletion of Record_: Utilizing PostgreSQL, we have a bank of affirmations that you can change randomly by clicking the change affirmation button. You deserve to be the pilot of your meditative journey.
+- _Email Storage / Deletion of Record_: Using MongoDB/Express, your IP address is captured and creates a record for you when the page loads. If you do not want your IP address stored, there is a button you can click to delete it. There is also an option to keep your email and be notified of new features when implemented.
 
 
 <p align="center">
