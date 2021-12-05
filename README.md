@@ -38,8 +38,22 @@ $ tree
 ├── Utils.ts
 └.babelrc, gitignore, readme, config files etc.
 ```
-I thought this would be a single-page app detailing cryptocurrency information when I started this app. The view is 2 Main components, the List of Cryptocurrencies and the details upon selection, stored in CryptoDetails and Menu. Within those components are children’s components stored in their directories. CryptoMenu has the menu itself, along with a menuItem for each cryptocurrency. CryptoDetails houses the info page, where data travels to render the chart and additional details regarding the coin selected.  There are multiple Axios requests to the controller to retrieve and store information within the components ( for code cleanliness, there is a utils file for functions being used in the controller and view).
- Once the controller (Express server) receives these requests, it will ping the API and retrieve data to render or interact with the Model (MongoDB database) to delete or modify records in the database.
+I thought this would be a single-page app detailing cryptocurrency information when I started this app. The view is 2 Main components, the List of Cryptocurrencies and the details upon selection, stored in CryptoDetails and Menu. Within those components are children’s components stored in their directories.
+
+CryptoMenu has the menu itself, along with a menuItem for each cryptocurrency.
+
+<p align="center">
+  <img src="https://i.imgur.com/9tP1dyZm.jpg" alt="animated" />
+</p>
+
+CryptoDetails houses the info page, where data travels to render the chart (cryptoChart) and additional details (CryptoInfo) regarding the coin selected.
+
+<p align="center">
+  <img src="https://i.imgur.com/D8Dozcjm.jpg" alt="animated" />
+</p>
+
+There are multiple Axios requests to the controller to retrieve and store information within the components ( for code cleanliness, there is a utils file for functions being used in the controller and view).
+Once the controller (Express server) receives these requests, it will ping the API and retrieve data to render or interact with the Model (MongoDB database) to delete or modify records in the database.
 
 
 
@@ -50,7 +64,7 @@ I thought this would be a single-page app detailing cryptocurrency information w
 
 - _List_: When a user visits the page, a list is rendered with all the cryptos available in USD. This list is scrollable, meaning the user doesn’t have to scroll through the whole site to find the crypto they desire, they can just scroll the list rendered.
 
-- _Chart_: A chart with 5 days worth of prices will render upon load ( Defaulting to BTC-USD). Upon click of a list item, the chart will re-render with information from the coin selected.
+- _Chart_: A chart of prices will render upon load (Defaulting to BTC-USD). Upon click of a list item, the chart will re-render with information from the coin selected.
 
 - _Email Storage / Deletion of Record_: Using MongoDB/Express, your IP address is captured and creates a record for you when the page loads. If you do not want your IP address stored, there is a button you can click to delete it. There is also an option to keep your email and be notified of new features when implemented.
 
