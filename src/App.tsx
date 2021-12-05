@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { grabIP } from './utils';
 import CryptoMenu from './Menu/CryptoMenu';
 import CryptoInfo from './CryptoDetails/CryptoInfo';
 import axios from "axios";
@@ -19,6 +20,12 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
+
+    grabIP()
+      .then( (ipAddress) => {
+        axios.post('http://localhost:3002/saveIP', {ipAddress})
+      })
+      .catch(err => console.error(err))
 
     axios.get('http://localhost:3002/getAllCurrencies', {
       params: {

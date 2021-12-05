@@ -63,7 +63,7 @@ export const getHistoricalCoinData = async (
   start: string = "12-01-2021",
   end: string = "12-02-2021"
 ) => {
-  const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=900`;
+  const candleURL: string = `${url}/products/${eachCur[0]}/candles?granularity=3600`;
 
   await axios
     .get(candleURL)
@@ -74,6 +74,19 @@ export const getHistoricalCoinData = async (
   let formattedHistory: any = formatData(historyArr);
 
   return formattedHistory;
+};
+
+export const grabIP = async () => {
+  let currentIP: any = {};
+  await axios.get('https://geolocation-db.com/json/')
+  .then(res => {
+    currentIP = res.data;
+  })
+  .catch(error => {
+    console.error(error)
+  })
+
+  return currentIP.IPv4;
 };
 //maybe button for 3 mo or 6 mo... values stores are 3/6 respectively then use this
 // var d = new Date();

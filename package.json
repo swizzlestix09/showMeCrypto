@@ -42,6 +42,8 @@
     "cors": "^2.8.5",
     "devextreme-react": "^21.2.3",
     "express": "^4.17.1",
+    "mongodb": "^4.2.1",
+    "mongoose": "^6.0.14",
     "react-hot-loader": "^4.13.0",
     "ts-node": "^10.4.0"
   }

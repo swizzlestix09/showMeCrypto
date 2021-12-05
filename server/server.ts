@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
 import { getHistoricalCoinData, apiCallForCurrencies } from "../src/utils";
-
+import save from "../database/index";
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port = 8080;
+const port = 3002;
 
 app.get("/getHistoricalData", (req, res) => {
   const { getCryptoURL, eachCurrency } = req.query;
@@ -36,6 +36,10 @@ app.get("/getAllCurrencies", (req, res) => {
     res.status(401).send(err);
   });
 })
+
+app.post("/saveIP", (req, res) => {
+  save(req.body.ipAddress);
+});
 
 app.listen(port, () => {
   console.dir(`We are listening on port: ${port}`);
