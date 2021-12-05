@@ -8,7 +8,7 @@
 </p>
 
 ## About:
-An application designed to show you a list of USD Cryptocurrencies, which upon selection will render a 5-day price chart. Hovering over the chart line will show you the price at that time. Upon load, this application will capture your IP address to create a record in which we can save your email if you would like to be notified of future features. If you don’t want your email stored, we can remove it upon request.
+An application designed to show you a list of USD Cryptocurrencies, which upon selection will render a 5-day price chart. Using websockets, realtime price data will also render underneath the chart. Hovering over the chart line will show you the price at that time. Upon load, this application will capture your IP address to create a record in which we can save your email if you would like to be notified of future features. If you don’t want your email stored, we can remove it upon request.
 
 
 ## Architecture/ File structure:
@@ -38,11 +38,15 @@ $ tree
 ├── Utils.ts
 └.babelrc, gitignore, readme, config files etc.
 ```
+I thought this would be a single-page app detailing cryptocurrency information when I started this app. The view is 2 Main components, the List of Cryptocurrencies and the details upon selection, stored in CryptoDetails and Menu. Within those components are children’s components stored in their directories. CryptoMenu has the menu itself, along with a menuItem for each cryptocurrency. CryptoDetails houses the info page, where data travels to render the chart and additional details regarding the coin selected.  There are multiple Axios requests to the controller to retrieve and store information within the components ( for code cleanliness, there is a utils file for functions being used in the controller and view).
+ Once the controller (Express server) receives these requests, it will ping the API and retrieve data to render or interact with the Model (MongoDB database) to delete or modify records in the database.
+
+
 
 ## Features:
 
 
-- _Simplistic Design_: This page was designed utilizing Material UI to keep it simple yet styled.
+- _Simplistic Design_: This page was designed utilizing Material UI - styled simply.
 
 - _List_: When a user visits the page, a list is rendered with all the cryptos available in USD. This list is scrollable, meaning the user doesn’t have to scroll through the whole site to find the crypto they desire, they can just scroll the list rendered.
 
@@ -107,28 +111,17 @@ $ tree
   </tbody>
 </table>
 
-
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+## Run the app:
 
 ### `npm start`
-
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:8080](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
+Launches the server.
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -136,18 +129,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
