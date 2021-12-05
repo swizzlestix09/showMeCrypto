@@ -12,8 +12,8 @@ An application designed to show you a list of USD Cryptocurrencies, which upon s
 
 
 ## Architecture/ File structure:
+```bash
 $ tree
-
 ├── database
 │   └── index.ts
 │
@@ -37,6 +37,7 @@ $ tree
 ├── Index.tsx
 ├── Utils.ts
 └.babelrc, gitignore, readme, config files etc.
+```bash
 
 ## Features:
 
