@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
     "sourceMap": true,
     "esModuleInterop": true,
@@ -20,12 +20,10 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true
   },
   "include": [
-    "src/**/*",
-    "server"
+      "./src/**/*"
   ]
 }

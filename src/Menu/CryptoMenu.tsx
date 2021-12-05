@@ -19,7 +19,7 @@ const CryptoMenu = (props: Props) => {
     <>
       <Paper sx={{ maxWidth: 'fit-content', padding: '20px 20px' }}>
         <h3>CryptoCurrencies</h3>
-        <Typography noWrap>
+        <Typography component={'span'} noWrap>
           <MenuList dense style={{maxHeight: 800, overflow: 'auto'}}>
             {listOfCrypto}
           </MenuList>

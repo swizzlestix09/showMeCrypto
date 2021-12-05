@@ -1,4 +1,4 @@
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem from '@material-ui/core/MenuItem';
 export interface Props {
   tokenId: string,
   tokenName: string,
