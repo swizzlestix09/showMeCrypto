@@ -1,6 +1,6 @@
 import Divider from '@mui/material/Divider';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart,
   Series,
@@ -21,9 +21,10 @@ export interface Props {
   eachCurrency: any[];
   getCryptoURL: string;
   firstRender: {}
+  IChartOptions: any
 };
 
-const CryptoChart: <IChartOptions> = (props: Props) => {
+const CryptoChart: React.FC <Props> = (props: Props) => {
   const { eachCurrency, getCryptoURL } = props;
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
