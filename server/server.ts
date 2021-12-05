@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port = 3002;
+const port = 8080;
 
 app.get("/getHistoricalData", (req, res) => {
   const { getCryptoURL, eachCurrency } = req.query;
