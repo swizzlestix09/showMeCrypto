@@ -37,7 +37,7 @@ $ tree
 ├── Index.tsx
 ├── Utils.ts
 └.babelrc, gitignore, readme, config files etc.
-```bash
+```
 
 ## Features:
 
