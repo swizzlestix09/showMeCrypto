@@ -13,19 +13,17 @@ import {
 } from 'devextreme-react/chart';
 import { Container } from '@mui/material';
 
-interface IChartOptions {
-  id: string,
-  dataSource: any[]
-};
+
 export interface Props {
   eachCurrency: any[];
   getCryptoURL: string;
-  firstRender: {}
-  IChartOptions: any
+  firstRender: {};
+  IChartOptions: any;
+  setChartOptions: any;
 };
 
 const CryptoChart: React.FC <Props> = (props: Props) => {
-  const { eachCurrency, getCryptoURL } = props;
+  const { eachCurrency, getCryptoURL, IChartOptions, setChartOptions } = props;
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
   useEffect(() => {
@@ -42,14 +40,14 @@ const CryptoChart: React.FC <Props> = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
-  let chartProps: IChartOptions = {
+  setChartOptions({
     id: "priceChart" ,
     dataSource: historicalCoinData
-  }
+  })
   return (
     <>
       <Container>
-        <Chart {...chartProps} >
+        <Chart {...IChartOptions} >
           <Size height={500} width={700} />
           <ValueAxis valueType={"price"}>
             <Grid opacity={0.2} />

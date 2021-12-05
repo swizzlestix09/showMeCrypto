@@ -22,6 +22,10 @@ type Ticker = {
   volume_30d: string | null
 };
 
+interface ChartOptions {
+  id: string,
+  dataSource: any[]
+};
 
 type Wsmsg = {
   type: string;
@@ -30,6 +34,7 @@ type Wsmsg = {
 }
 
 const CryptoInfo = (props: Props) => {
+  const [chartOptions, setChartOptions] = useState<ChartOptions>({} as ChartOptions)
   const currentCrypto = useRef<any>(false);
   const isDeleted = useRef<any>('');
   const [email, setEmail] = useState<string>('');
@@ -106,7 +111,7 @@ const CryptoInfo = (props: Props) => {
   return (
     <div className='cryptoInfo'>
       <h1>{currentCrypto.current}</h1>
-      <CryptoChart eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
+      <CryptoChart setChartOptions={setChartOptions} IChartOptions={chartOptions} eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} />
       <CryptoDetails tickerInfo={tickerInfo} />
       <h6> We're saving your IP address for future features. Don't like that? Hit Delete Below:</h6>
       <Button variant="outlined" onClick={deleteRecord} > Delete </Button>
