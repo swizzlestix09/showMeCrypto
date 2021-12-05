@@ -56,7 +56,13 @@ const CryptoInfo = (props: Props) => {
 
   const submitEmail = () => {
     let ipAdd = ip.current;
-    axios.put('http://localhost:3002/emailUpdate', {data: {ipAdd, email}} )
+    axios.put('http://localhost:3002/emailUpdate', {ipAdd, email} )
+    .then(confirmed => {
+      setEmail('')
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   useEffect(() => {

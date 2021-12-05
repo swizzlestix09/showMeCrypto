@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { getHistoricalCoinData, apiCallForCurrencies } from "../src/utils";
-import { saveIp, deleteRec } from "../database/index";
+import { saveIp, deleteRec, updateRec} from "../database/index";
 const app = express();
 
 app.use(cors());
@@ -65,7 +65,15 @@ app.delete("/deleteRecord", (req, res) => {
 });
 
 app.put('/emailUpdate', (req, res) => {
-  console.log(req)
+  let { ipAdd, email } = req.body;
+  updateRec(ipAdd, email)
+  .then(success => {
+    res.status(202).send(success)
+  })
+  .catch(error => {
+    console.log(error)
+    res.sendStatus(500)
+  })
 })
 
 
