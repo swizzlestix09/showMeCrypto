@@ -40,7 +40,7 @@ const CryptoChart = (props: Props) => {
   return (
     <>
       <Container>
-        <Chart id="priceChart" dataSource={historicalCoinData}>
+        <Chart id="priceChart" data={historicalCoinData}>
           <Size height={500} width={700} />
           <ValueAxis valueType={"price"}>
             <Grid opacity={0.2} />
