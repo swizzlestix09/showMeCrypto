@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { getHistoricalCoinData, apiCallForCurrencies } from "../src/utils";
 import { saveIp, deleteRec, updateRec} from "../database/index";
 const app = express();
@@ -7,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('./', express.static('public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 const port = process.env.PORT || 3002;
 
