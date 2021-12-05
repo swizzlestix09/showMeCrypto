@@ -21,6 +21,10 @@ $ tree
 │   └── bundle.js
 │   └── bundle.js.LICENSE.txt
 │   └── index.html
+├── public
+│   └── index.html
+│   └── manifest.json
+│   └── robots.txt
 ├── server
 │   ├── server.ts
 ├── src
