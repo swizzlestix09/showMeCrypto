@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { getHistoricalCoinData, apiCallForCurrencies } from "../src/utils";
-import { saveIp, saveCrypto } from "../database/index";
+import { saveIp, deleteRec } from "../database/index";
 const app = express();
 
 app.use(cors());
@@ -41,24 +41,31 @@ app.post("/saveIP", (req, res) => {
   saveIp(req.body.ipAddress);
 });
 
-app.post("/saveCrypto", (req, res) => {
-  let { selectedCrypto, ip } = req.body;
-  saveCrypto(ip.current, selectedCrypto)
-  .then(( data ) => {
-    res.status(200).json(data);
+// app.post("/saveCrypto", (req, res) => {
+//   let { selectedCrypto, ip } = req.body;
+//   saveCrypto(ip.current, selectedCrypto)
+//   .then(( data ) => {
+//     res.status(200).json(data);
+//   })
+//   .catch( (error) => {
+//     console.error(error);
+//     res.status(502);
+//   })
+// });
+
+app.delete("/deleteRecord", (req, res) => {
+  let ip = req.body.ip.current
+  deleteRec(ip)
+  .then(deleted => {
+    res.status(202).send(deleted)
   })
-  .catch( (error) => {
-    console.error(error);
-    res.status(502);
-  })
+  .catch( (error) =>
+    res.sendStatus(409)
+  )
 });
 
-app.delete("/removeCrypto", (req, res) => {
-  res.send('Got a DELETE request at /removeCrypto')
-});
-
-app.put('/updateFavorites', (req, res) => {
-  res.send('Got a PUT request at /user')
+app.put('/emailUpdate', (req, res) => {
+  console.log(req)
 })
 
 
