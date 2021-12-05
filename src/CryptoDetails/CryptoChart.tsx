@@ -13,13 +13,17 @@ import {
 } from 'devextreme-react/chart';
 import { Container } from '@mui/material';
 
+interface IChartOptions {
+  id: string,
+  dataSource: any[]
+};
 export interface Props {
   eachCurrency: any[];
   getCryptoURL: string;
   firstRender: {}
 };
 
-const CryptoChart = (props: Props) => {
+const CryptoChart: <IChartOptions> = (props: Props) => {
   const { eachCurrency, getCryptoURL } = props;
   const [historicalCoinData, setHistoricalData] = useState<[]>([]);
 
@@ -37,10 +41,14 @@ const CryptoChart = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eachCurrency, getCryptoURL, setHistoricalData]);
 
+  let chartProps: IChartOptions = {
+    id: "priceChart" ,
+    dataSource: historicalCoinData
+  }
   return (
     <>
       <Container>
-        <Chart id="priceChart" dataSource={historicalCoinData}>
+        <Chart {...chartProps} >
           <Size height={500} width={700} />
           <ValueAxis valueType={"price"}>
             <Grid opacity={0.2} />
