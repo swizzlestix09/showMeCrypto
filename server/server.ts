@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { getHistoricalCoinData, apiCallForCurrencies } from "../src/utils";
-import save from "../database/index";
+import { saveIp, saveCrypto } from "../database/index";
 const app = express();
 
 app.use(cors());
@@ -38,8 +38,29 @@ app.get("/getAllCurrencies", (req, res) => {
 })
 
 app.post("/saveIP", (req, res) => {
-  save(req.body.ipAddress);
+  saveIp(req.body.ipAddress);
 });
+
+app.post("/saveCrypto", (req, res) => {
+  let { selectedCrypto, ip } = req.body;
+  saveCrypto(ip.current, selectedCrypto)
+  .then(( data ) => {
+    res.status(200).json(data);
+  })
+  .catch( (error) => {
+    console.error(error);
+    res.status(502);
+  })
+});
+
+app.delete("/removeCrypto", (req, res) => {
+  res.send('Got a DELETE request at /removeCrypto')
+});
+
+app.put('/updateFavorites', (req, res) => {
+  res.send('Got a PUT request at /user')
+})
+
 
 app.listen(port, () => {
   console.dir(`We are listening on port: ${port}`);

@@ -9,11 +9,11 @@ const getCryptoURL = 'https://api.exchange.coinbase.com';
 const App: React.FC = () => {
   const ws = useRef<any>('');
   const firstRender = useRef<boolean>(false);
+  const ip = useRef<any>('');
   const [currencies, setCurrencies] = useState<any[]>([]);
   const [eachCurrency, getCurrencyInfo] = useState<any[]>(['BTC-USD']);
 
   const clickCurrency = (currencyId: any) => {
-    console.log(typeof currencyId)
     let ticker = currencyId.textContent.split(' ');
     ws.current.close()
     getCurrencyInfo(ticker);
@@ -23,6 +23,7 @@ const App: React.FC = () => {
 
     grabIP()
       .then( (ipAddress) => {
+        ip.current = ipAddress;
         axios.post('http://localhost:3002/saveIP', {ipAddress})
       })
       .catch(err => console.error(err))
@@ -44,7 +45,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <CryptoMenu currencies={currencies} clickCurrency={clickCurrency} />
-      <CryptoInfo eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws} />
+      <CryptoInfo ip={ip} eachCurrency={eachCurrency} getCryptoURL={getCryptoURL} firstRender={firstRender} ws={ws} />
     </div>
   );
 };
