@@ -34,7 +34,7 @@ const config = {
   },
   devServer: {
     'static': {
-      directory: './src'
+      directory: './dist'
     }
   },
   resolve: {
