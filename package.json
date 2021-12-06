@@ -3,13 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.18.2",
-    "npm": "6.14.15"
-  },
-    "scripts": {
-    "start": "node dist/public/index.js",
-    "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
+  "scripts": {
+    "start": "node src/index.js",
     "watch-node": "nodemon server/server.ts",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
