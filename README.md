@@ -44,13 +44,13 @@ $ tree
 ```
 I thought this would be a single-page app detailing cryptocurrency information when I started this app. The view is 2 Main components, the List of Cryptocurrencies and the details upon selection, stored in CryptoDetails and Menu. Within those components are children’s components stored in their directories.
 
-CryptoMenu has the menu itself, along with a menuItem for each cryptocurrency.
+CryptoMenu has the menu itself, along with a menuItem for each cryptocurrency. The menu is being rendered with data from the coinbase API, filtered by USD.
 
 <p align="center">
   <img src="https://i.imgur.com/9tP1dyZm.jpg" alt="animated" />
 </p>
 
-CryptoDetails houses the info page, where data travels to render the chart (cryptoChart) and additional details (CryptoInfo) regarding the coin selected.
+CryptoDetails houses the info page, where data travels to render the chart (cryptoChart) and additional details (CryptoInfo) regarding the coin selected, which is being access from the coinbase API.
 
 <p align="center">
   <img src="https://i.imgur.com/D8Dozcjm.jpg" alt="animated" />
