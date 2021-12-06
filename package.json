@@ -7,8 +7,13 @@
     "node": "14.18.2",
     "npm": "6.14.15"
   },
+<<<<<<< HEAD
   "scripts": {
     "start": "node index.js",
+=======
+    "scripts": {
+    "start": "node dist/index.js",
+>>>>>>> parent of 596063d (changes made in package.json for deployment)
     "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
     "watch-node": "nodemon server/server.ts",
     "watch-ts": "tsc -w",
