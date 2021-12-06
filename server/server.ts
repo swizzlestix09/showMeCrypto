@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/public', express.static(path.join(__dirname, './dist')));
 console.log(path.join(__dirname, '..', 'dist'))
 
+const uri = process.env.MONGODB_URI;
 const port = process.env.PORT || 3002;
 
 app.get("/getHistoricalData", (req, res) => {
