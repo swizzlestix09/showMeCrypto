@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "postinstall": "tsc && mv -i -v public dist/ && rm -v -rf src",
-    "watch-node": "nodemon server/server.ts",
+    "watch-node": "node server/server.ts",
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "clean": "rm dist/bundle.js",
@@ -51,7 +51,6 @@
     "express": "^4.17.1",
     "mongodb": "^4.2.1",
     "mongoose": "^6.0.14",
-    "react-hot-loader": "^4.13.0",
-    "ts-node": "^10.4.0"
+    "react-hot-loader": "^4.13.0"
   }
 }
