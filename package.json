@@ -14,15 +14,8 @@
     "watch-ts": "tsc -w",
     "deploy": "git add . && git commit -m Heroku && git push heroku master",
     "clean": "rm dist/bundle.js",
-<<<<<<< HEAD
     "build-dev": "webpack serve --hot --mode development",
     "build-prod": "webpack --mode production"
-=======
-    "build-dev": "webpack --mode development",
-    "build-prod": "webpack --mode production",
-    "test": "nodemon server/server.ts",
-    "start": "webpack serve --hot --mode development"
->>>>>>> parent of 09664ef (start script changes)
   },
   "keywords": [],
   "author": "",
