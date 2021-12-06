@@ -9,10 +9,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '..' ,  './public')));
-console.log(path.join(__dirname, '..' ,  './public'))
+console.log(path.join(__dirname, '..' ,  '/public/html'))
 const port = process.env.PORT || 3002;
 
-console.log(path.resolve(__dirname, '..', 'dist')),
 
 app.get("/getHistoricalData", (req, res) => {
   const { getCryptoURL, eachCurrency } = req.query;
