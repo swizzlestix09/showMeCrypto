@@ -1,6 +1,5 @@
 import { Schema, model, connect } from "mongoose";
-const uri = process.env.MONGODB_URI;
-const database: string = process.env.MONGODB_URI || "mongodb://localhost:27017/faveCrypto";
+const database: string = "mongodb://localhost:27017/faveCrypto";
 
 interface User {
   ip: string;

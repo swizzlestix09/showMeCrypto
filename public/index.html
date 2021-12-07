@@ -7,8 +7,8 @@
     <meta
       name="description"
       content="Web site created using create-react-app"
-      <link rel="manifest" href="/public/manifest.json" />
-
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -22,6 +22,9 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+      DevExpress.config({ forceIsoDateParsing: true });
+    </script>
     <div id="root"></div>
   </body>
 </html>

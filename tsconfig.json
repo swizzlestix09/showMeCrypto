@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "CommonJS",
+    "module": "commonjs",
     "sourceMap": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
-    "outDir": "./dist/",
+    "moduleResolution": "node",
+    "outDir": "dist",
     "baseUrl": ".",
     "lib": [
       "dom",
@@ -23,6 +24,6 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
-      "./src"
+      "./src/**/*"
 , "database"  ]
 }

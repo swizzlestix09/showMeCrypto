@@ -7,10 +7,9 @@ const config = {
     './src/index.tsx'
   ],
   output: {
-    path: path.resolve(__dirname, '..', 'dist'),
-    filename: 'index.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
-  mode: process.env.NODE_ENV || "development",
   module: {
     rules: [
       {
@@ -34,7 +33,7 @@ const config = {
   },
   devServer: {
     'static': {
-      directory: './src'
+      directory: './dist'
     }
   },
   resolve: {
