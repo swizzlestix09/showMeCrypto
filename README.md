@@ -2,7 +2,7 @@
   <h1 align="center">Show Me Crypto</h1>
 
   <p align="center">
-    An application .
+    An application
     <br />
   </p>
 </p>
